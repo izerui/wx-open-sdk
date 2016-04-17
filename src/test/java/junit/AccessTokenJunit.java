@@ -1,6 +1,6 @@
 package junit;
 
-import com.github.izerui.weixin.WxApiStores;
+import com.github.izerui.weixin.WxEngine;
 import com.github.izerui.weixin.mappings.AccessToken;
 import org.junit.Before;
 import retrofit2.Call;
@@ -15,7 +15,7 @@ public abstract class AccessTokenJunit implements Constants{
 
     @Before
     public void setUp() throws Exception {
-        Call<AccessToken> token = WxApiStores.api().accessToken("client_credential", Constants.appId, Constants.appSecret);
+        Call<AccessToken> token = WxEngine.api().accessToken("client_credential", Constants.appId, Constants.appSecret);
         Response<AccessToken> response = token.execute();
 
         if(response.isSuccessful()){

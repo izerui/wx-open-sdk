@@ -1,8 +1,7 @@
 package junit;
 
-import com.github.izerui.weixin.WxApiStores;
+import com.github.izerui.weixin.WxEngine;
 import com.github.izerui.weixin.mappings.Groups;
-import okhttp3.ResponseBody;
 import org.junit.Test;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -16,7 +15,7 @@ public class GroupJunit extends AccessTokenJunit {
 
     @Test
     public void groups() throws IOException {
-        Call<Groups> groups = WxApiStores.api().groups(accessToken);
+        Call<Groups> groups = WxEngine.api().groups(accessToken);
 
         Response<Groups> execute = groups.execute();
 

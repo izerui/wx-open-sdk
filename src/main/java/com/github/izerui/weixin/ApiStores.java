@@ -2,10 +2,8 @@ package com.github.izerui.weixin;
 
 import com.github.izerui.weixin.mappings.AccessToken;
 import com.github.izerui.weixin.mappings.Groups;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**

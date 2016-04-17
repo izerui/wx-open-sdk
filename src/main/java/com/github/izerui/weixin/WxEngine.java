@@ -6,7 +6,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 /**
  * Created by serv on 16/4/15.
  */
-public class WxApiStores {
+public class WxEngine {
 
     public static ApiStores api(){
         return api(null);
