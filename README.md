@@ -2,9 +2,9 @@
 
 在你的项目中使用:
 
-第一步: 添加 JitPack repository
+* gradle:
 
-gradle:
+第一步: 添加 JitPack repository
 ```xml
 allprojects {
 		repositories {
@@ -13,8 +13,16 @@ allprojects {
 		}
 	}
 ```
+第二步: 添加依赖
+gralde:
+```xml
+dependencies {
+	        compile 'com.github.izerui:wx-open-sdk:1.0-SNAPSHOT'
+	}
+```
 
-maven:
+* maven:
+第一步: 添加 JitPack repository
 ```xml
 <repositories>
 		<repository>
@@ -23,16 +31,7 @@ maven:
 		</repository>
 	</repositories>
 ```
-
 第二步: 添加依赖
-
-gralde:
-```xml
-dependencies {
-	        compile 'com.github.izerui:wx-open-sdk:1.0-SNAPSHOT'
-	}
-```
-
 maven:
 ```xml
 <dependency>
