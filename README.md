@@ -2,7 +2,7 @@
 
 在你的项目中使用:
 
-* gradle:
+# gradle
 
 第一步: 添加 JitPack repository
 ```xml
@@ -21,7 +21,8 @@ dependencies {
 	}
 ```
 
-* maven:
+# maven
+
 第一步: 添加 JitPack repository
 ```xml
 <repositories>
