@@ -14,7 +14,6 @@ allprojects {
 	}
 ```
 第二步: 添加依赖
-gralde:
 ```xml
 dependencies {
 	        compile 'com.github.izerui:wx-open-sdk:1.0-SNAPSHOT'
@@ -33,7 +32,6 @@ dependencies {
 	</repositories>
 ```
 第二步: 添加依赖
-maven:
 ```xml
 <dependency>
 	    <groupId>com.github.izerui</groupId>
