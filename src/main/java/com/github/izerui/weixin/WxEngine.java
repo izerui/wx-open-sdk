@@ -3,7 +3,6 @@ package com.github.izerui.weixin;
 import com.github.izerui.weixin.converter.JacksonConverterFactory;
 import com.github.izerui.weixin.impl.GroupServiceImpl;
 import com.github.izerui.weixin.impl.MenuServiceImpl;
-import com.github.izerui.weixin.impl.ServiceImpl;
 import com.github.izerui.weixin.impl.TokenServiceImpl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
