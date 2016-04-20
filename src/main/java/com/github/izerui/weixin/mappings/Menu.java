@@ -22,7 +22,7 @@ public class Menu implements Serializable {
     @JsonProperty("media_id")
     private String mediaId;
     @JsonProperty("sub_button")
-    private List<Menus> subButton;
+    private List<Menu> subButton;
 
     public MenuType getType() {
         return type;
@@ -64,11 +64,11 @@ public class Menu implements Serializable {
         this.mediaId = mediaId;
     }
 
-    public List<Menus> getSubButton() {
+    public List<Menu> getSubButton() {
         return subButton;
     }
 
-    public void setSubButton(List<Menus> subButton) {
+    public void setSubButton(List<Menu> subButton) {
         this.subButton = subButton;
     }
 }
