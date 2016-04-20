@@ -16,8 +16,8 @@
 package com.github.izerui.weixin.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.izerui.weixin.enumeration.RequestConverter;
-import com.github.izerui.weixin.enumeration.ResponseConverter;
+import com.github.izerui.weixin.support.RequestConverter;
+import com.github.izerui.weixin.support.ResponseConverter;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;

@@ -1,7 +1,7 @@
 package com.github.izerui.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.izerui.weixin.enumeration.MenuType;
+import com.github.izerui.weixin.support.MenuType;
 
 import java.io.Serializable;
 import java.util.List;

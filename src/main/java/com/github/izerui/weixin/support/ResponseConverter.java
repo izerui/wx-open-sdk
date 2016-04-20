@@ -1,4 +1,4 @@
-package com.github.izerui.weixin.enumeration;
+package com.github.izerui.weixin.support;
 
 import com.github.izerui.weixin.converter.JacksonResponseBodyConverter;
 

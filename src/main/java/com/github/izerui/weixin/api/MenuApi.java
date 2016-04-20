@@ -1,7 +1,7 @@
 package com.github.izerui.weixin.api;
 
 import com.github.izerui.weixin.converter.CreateMenuRequestConverter;
-import com.github.izerui.weixin.enumeration.RequestConverter;
+import com.github.izerui.weixin.support.RequestConverter;
 import com.github.izerui.weixin.mappings.Menu;
 import com.github.izerui.weixin.mappings.Status;
 import retrofit2.Call;

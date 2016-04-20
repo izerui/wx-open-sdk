@@ -1,7 +1,7 @@
 package com.github.izerui.weixin.api;
 
 import com.github.izerui.weixin.converter.GroupsRequestConverter;
-import com.github.izerui.weixin.enumeration.ResponseConverter;
+import com.github.izerui.weixin.support.ResponseConverter;
 import com.github.izerui.weixin.mappings.Group;
 import retrofit2.Call;
 import retrofit2.http.GET;

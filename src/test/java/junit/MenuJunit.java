@@ -1,6 +1,6 @@
 package junit;
 
-import com.github.izerui.weixin.enumeration.MenuType;
+import com.github.izerui.weixin.support.MenuType;
 import com.github.izerui.weixin.mappings.Menu;
 import com.github.izerui.weixin.mappings.Status;
 import org.junit.Test;
