@@ -12,8 +12,9 @@ repositories{
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.13'
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    compile 'com.squareup.retrofit2:converter-jackson:2.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+    compile 'javax.validation:validation-api:1.1.0.Final'
     testCompile 'junit:junit:4.12'
     testCompile 'ch.qos.logback:logback-classic:1.1.3'
 

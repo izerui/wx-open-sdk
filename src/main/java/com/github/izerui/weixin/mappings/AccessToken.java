@@ -5,13 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by serv on 16/4/15.
  */
-public class AccessToken extends ErrorBody{
+public class AccessToken extends Status {
 
     @JsonProperty("access_token")
     private String accessToken;
 
     @JsonProperty("expires_in")
-    private String expiresIn;
+    private Long expiresIn;
+
+    //获取token时的毫秒级
+    private Long tokenTimeMillis = System.currentTimeMillis();
 
     public String getAccessToken() {
         return accessToken;
@@ -21,11 +24,19 @@ public class AccessToken extends ErrorBody{
         this.accessToken = accessToken;
     }
 
-    public String getExpiresIn() {
+    public Long getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(String expiresIn) {
+    public void setExpiresIn(Long expiresIn) {
         this.expiresIn = expiresIn;
+    }
+
+    public Long expiresInSeconds(){
+        return expiresIn - ((System.currentTimeMillis() - tokenTimeMillis)/1000);
+    }
+
+    public Long expiresInMinites(){
+        return expiresInSeconds()/60;
     }
 }

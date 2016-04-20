@@ -1,19 +1,23 @@
-package com.github.izerui.weixin.mappings;
+package com.github.izerui.weixin.mappings.vo.card;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by serv on 16/4/15.
+ * Created by user on 2015/7/1.
  */
-public class ErrorBody implements Serializable{
+public class UserCardList implements Serializable {
 
     @JsonProperty("errcode")
-    private String errCode;
+    private String errCode ;
 
     @JsonProperty("errmsg")
-    private String errMsg;
+    private String errMsg ;
+
+    @JsonProperty("card_list")
+    private List<UserCard> cardList ;
 
 
     public String getErrCode() {
@@ -32,7 +36,11 @@ public class ErrorBody implements Serializable{
         this.errMsg = errMsg;
     }
 
-    public boolean isSuccess(){
-        return errCode==null||errCode.equals("0");
+    public List<UserCard> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<UserCard> cardList) {
+        this.cardList = cardList;
     }
 }
