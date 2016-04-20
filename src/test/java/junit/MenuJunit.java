@@ -1,13 +1,9 @@
 package junit;
 
-import com.github.izerui.weixin.WxEngine;
 import com.github.izerui.weixin.enumeration.MenuType;
-import com.github.izerui.weixin.mappings.Groups;
 import com.github.izerui.weixin.mappings.Menu;
 import com.github.izerui.weixin.mappings.Status;
 import org.junit.Test;
-import retrofit2.Call;
-import retrofit2.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;

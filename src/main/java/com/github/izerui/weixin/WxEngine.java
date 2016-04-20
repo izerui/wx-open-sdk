@@ -1,6 +1,7 @@
 package com.github.izerui.weixin;
 
 import com.github.izerui.weixin.converter.JacksonConverterFactory;
+import com.github.izerui.weixin.impl.GroupServiceImpl;
 import com.github.izerui.weixin.impl.MenuServiceImpl;
 import com.github.izerui.weixin.impl.ServiceImpl;
 import com.github.izerui.weixin.impl.TokenServiceImpl;
@@ -16,6 +17,7 @@ public class WxEngine {
 
     private TokenService tokenService;
     private MenuService menuService;
+    private GroupService groupService;
 
     public WxEngine() {
         retrofit = builder().build();
@@ -31,6 +33,7 @@ public class WxEngine {
         //TODO 更多service
         tokenService = new TokenServiceImpl(retrofit);
         menuService = new MenuServiceImpl(retrofit);
+        groupService = new GroupServiceImpl(retrofit);
     }
 
     protected Retrofit.Builder builder(){
@@ -45,5 +48,9 @@ public class WxEngine {
 
     public MenuService getMenuService(String accessToken){
         return ((MenuServiceImpl)menuService).setAccessToken(accessToken);
+    }
+
+    public GroupService getGroupService(String accessToken){
+        return ((GroupServiceImpl)groupService).setAccessToken(accessToken);
     }
 }
