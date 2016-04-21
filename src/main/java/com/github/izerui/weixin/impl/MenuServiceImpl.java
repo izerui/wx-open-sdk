@@ -37,4 +37,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuApi> implements MenuService
     public Status delete() {
         return execute(api().delete(accessToken));
     }
+
+    @Override
+    public String getCurrentSelfmenuInfo() {
+        return execute(api().getCurrentSelfmenuInfo(accessToken));
+    }
 }

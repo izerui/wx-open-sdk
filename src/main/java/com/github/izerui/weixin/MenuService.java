@@ -16,4 +16,6 @@ public interface MenuService{
     List<Menu> get();
 
     Status delete();
+
+    String getCurrentSelfmenuInfo();
 }
