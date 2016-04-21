@@ -1,5 +1,6 @@
 package com.github.izerui.weixin;
 
+import com.github.izerui.weixin.mappings.Message;
 import com.github.izerui.weixin.mappings.Status;
 
 /**
@@ -7,5 +8,5 @@ import com.github.izerui.weixin.mappings.Status;
  */
 public interface MessageService {
 
-    Status send(String message);
+    Status send(Message message);
 }

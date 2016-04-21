@@ -2,6 +2,7 @@ package com.github.izerui.weixin.impl;
 
 import com.github.izerui.weixin.MessageService;
 import com.github.izerui.weixin.api.MessageApi;
+import com.github.izerui.weixin.mappings.Message;
 import com.github.izerui.weixin.mappings.Status;
 import retrofit2.Retrofit;
 
@@ -20,7 +21,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageApi> implements Messa
     }
 
     @Override
-    public Status send(String message) {
+    public Status send(Message message) {
         return execute(api().send(message,accessToken));
     }
 }
