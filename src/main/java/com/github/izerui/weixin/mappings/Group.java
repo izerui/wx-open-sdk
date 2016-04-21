@@ -1,9 +1,11 @@
 package com.github.izerui.weixin.mappings;
 
+import java.io.Serializable;
+
 /**
  * Created by serv on 16/4/16.
  */
-public class Group {
+public class Group implements Serializable{
 
     private Integer id;
     private String name;

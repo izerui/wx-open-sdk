@@ -1,9 +1,7 @@
 package com.github.izerui.weixin;
 
 import com.github.izerui.weixin.converter.JacksonConverterFactory;
-import com.github.izerui.weixin.impl.GroupServiceImpl;
-import com.github.izerui.weixin.impl.MenuServiceImpl;
-import com.github.izerui.weixin.impl.TokenServiceImpl;
+import com.github.izerui.weixin.impl.*;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
@@ -17,6 +15,8 @@ public class WxEngine {
     private TokenService tokenService;
     private MenuService menuService;
     private GroupService groupService;
+    private MessageService messageService;
+    private UserService userService;
 
     public WxEngine() {
         retrofit = builder().build();
@@ -29,10 +29,11 @@ public class WxEngine {
     }
 
     private void init(){
-        //TODO 更多service
         tokenService = new TokenServiceImpl(retrofit);
         menuService = new MenuServiceImpl(retrofit);
         groupService = new GroupServiceImpl(retrofit);
+        messageService = new MessageServiceImpl(retrofit);
+        userService = new UserServiceImpl(retrofit);
     }
 
     protected Retrofit.Builder builder(){
@@ -46,10 +47,18 @@ public class WxEngine {
     }
 
     public MenuService getMenuService(String accessToken){
-        return ((MenuServiceImpl)menuService).setAccessToken(accessToken);
+        return ((ServiceImpl<?>)menuService).setAccessToken(accessToken);
     }
 
     public GroupService getGroupService(String accessToken){
-        return ((GroupServiceImpl)groupService).setAccessToken(accessToken);
+        return ((ServiceImpl<?>)groupService).setAccessToken(accessToken);
+    }
+
+    public MessageService getMessageService(String accessToken){
+        return ((ServiceImpl<?>)messageService).setAccessToken(accessToken);
+    }
+
+    public UserService getUserService(String accessToken){
+        return ((ServiceImpl<?>)userService).setAccessToken(accessToken);
     }
 }
