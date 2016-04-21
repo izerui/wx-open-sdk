@@ -21,7 +21,7 @@ public class MenuJunit extends BaseJunit {
         List<Button> buttons = new ArrayList<Button>();
 
         Button button = new Button();
-        button.setName("多大1");
+        button.setName("多大3331");
         button.setType(ButtonType.click);
         button.setKey("jsjdf");
         buttons.add(button);
@@ -34,5 +34,11 @@ public class MenuJunit extends BaseJunit {
     public void get(){
         List<Menu> buttons = engine.getMenuService(accessToken).get();
         System.out.println(buttons);
+    }
+
+    @Test
+    public void delete(){
+        Status delete = engine.getMenuService(accessToken).delete();
+        System.out.println(delete);
     }
 }

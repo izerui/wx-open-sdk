@@ -32,4 +32,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuApi> implements MenuService
     public List<Menu> get() {
         return execute(api().get(accessToken));
     }
+
+    @Override
+    public Status delete() {
+        return execute(api().delete(accessToken));
+    }
 }

@@ -14,4 +14,6 @@ public interface MenuService{
     Status create(List<Button> buttons);
 
     List<Menu> get();
+
+    Status delete();
 }
