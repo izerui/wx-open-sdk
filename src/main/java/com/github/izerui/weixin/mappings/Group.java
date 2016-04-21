@@ -35,6 +35,6 @@ public class Group {
 
     @Override
     public String toString() {
-        return String.format("{id:%s name:%s count:%s}",id,name,count);
+        return String.format("Group[id=%s,name=%s,count=%s]",id,name,count);
     }
 }

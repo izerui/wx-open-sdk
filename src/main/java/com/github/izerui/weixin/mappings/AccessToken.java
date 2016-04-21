@@ -39,4 +39,9 @@ public class AccessToken extends Status {
     public Long expiresInMinites(){
         return expiresInSeconds()/60;
     }
+
+    @Override
+    public String toString() {
+        return String.format("AccessToken[accessToken=%s,expiresIn=%s]",accessToken,expiresIn);
+    }
 }

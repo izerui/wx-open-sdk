@@ -8,15 +8,19 @@ import retrofit2.Retrofit;
 /**
  * Created by serv on 16/4/20.
  */
-public class TokenServiceImpl extends ServiceImpl implements TokenService {
+public class TokenServiceImpl extends ServiceImpl<AccessTokenApi> implements TokenService {
 
     public TokenServiceImpl(Retrofit retrofit) {
         super(retrofit);
     }
 
     @Override
+    protected Class<AccessTokenApi> getApiClass() {
+        return AccessTokenApi.class;
+    }
+
+    @Override
     public AccessToken getToken(String appId, String appSecret) {
-        AccessTokenApi api = retrofit.create(AccessTokenApi.class);
-        return execute(api.getToken("client_credential", appId, appSecret));
+        return execute(api().getToken("client_credential", appId, appSecret));
     }
 }

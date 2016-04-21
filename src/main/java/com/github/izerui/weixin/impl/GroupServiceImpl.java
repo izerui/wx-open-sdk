@@ -10,15 +10,19 @@ import java.util.List;
 /**
  * Created by serv on 16/4/21.
  */
-public class GroupServiceImpl extends ServiceImpl implements GroupService {
+public class GroupServiceImpl extends ServiceImpl<GroupApi> implements GroupService {
 
     public GroupServiceImpl(Retrofit retrofit) {
         super(retrofit);
     }
 
     @Override
+    protected Class<GroupApi> getApiClass() {
+        return GroupApi.class;
+    }
+
+    @Override
     public List<Group> groups() {
-        GroupApi api = retrofit.create(GroupApi.class);
-        return execute(api.groups(accessToken));
+        return execute(api().groups(accessToken));
     }
 }

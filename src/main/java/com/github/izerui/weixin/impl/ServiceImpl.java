@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by serv on 16/4/20.
  */
-public class ServiceImpl{
+public abstract class ServiceImpl<T>{
 
     protected Retrofit retrofit;
 
@@ -20,9 +20,15 @@ public class ServiceImpl{
         this.retrofit = retrofit;
     }
 
-    protected <T> T execute(Call<T> call){
+    /**
+     * 执行retrofit请求
+     * @param call 请求对象持有者
+     * @param <U>  response 类对象
+     * @return
+     */
+    protected <U> U execute(Call<U> call){
         try {
-            Response<T> response = call.execute();
+            Response<U> response = call.execute();
             if(response.isSuccessful()){
                 return response.body();
             }else {
@@ -33,12 +39,40 @@ public class ServiceImpl{
         }
     }
 
+    /**
+     * 获取当前请求的accessToken
+     * @return
+     */
     public String getAccessToken() {
         return accessToken;
     }
 
-    public <T extends ServiceImpl> T setAccessToken(String accessToken) {
+    /**
+     * 放入accessToken
+     * @param accessToken
+     * @param <U>
+     * @return
+     */
+    public <U extends ServiceImpl> U setAccessToken(String accessToken) {
         this.accessToken = accessToken;
-        return (T) this;
+        return (U) this;
     }
+
+    /**
+     * 获取retrofit的api接口类对象
+     * @return 创建的api对象
+     */
+    protected T api(){
+        Class<T> apiClass = getApiClass();
+        if(apiClass==null){
+            throw new WxException("api class must not be null!");
+        }
+        return retrofit.create(apiClass);
+    }
+
+    /**
+     * serviceImpl用来创建请求的接口类
+     * @return
+     */
+    protected abstract Class<T> getApiClass();
 }

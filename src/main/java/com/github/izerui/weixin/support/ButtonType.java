@@ -3,7 +3,7 @@ package com.github.izerui.weixin.support;
 /**
  * http://mp.weixin.qq.com/wiki/10/0234e39a2025342c17a7d23595c6b40a.html
  */
-public enum MenuType {
+public enum ButtonType {
     /**
      * 点击推事件
      */

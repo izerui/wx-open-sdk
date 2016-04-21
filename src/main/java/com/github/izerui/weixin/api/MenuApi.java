@@ -1,11 +1,15 @@
 package com.github.izerui.weixin.api;
 
-import com.github.izerui.weixin.converter.CreateMenuRequestConverter;
-import com.github.izerui.weixin.support.RequestConverter;
+import com.github.izerui.weixin.converter.MenuCreateRequestConverter;
+import com.github.izerui.weixin.converter.MenuGetResponseConverter;
 import com.github.izerui.weixin.mappings.Menu;
+import com.github.izerui.weixin.support.RequestConverter;
+import com.github.izerui.weixin.mappings.Button;
 import com.github.izerui.weixin.mappings.Status;
+import com.github.izerui.weixin.support.ResponseConverter;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -16,14 +20,12 @@ import java.util.List;
  */
 public interface MenuApi {
 
-    /**
-     * 自定义菜单创建接口
-     * @param menus 菜单集合
-     * @param accessToken token
-     * @return {"errcode":0,"errmsg":"ok"}
-     */
     @POST("menu/create")
-    @RequestConverter(CreateMenuRequestConverter.class)
-    Call<Status> createMenus(@Body List<Menu> menus, @Query("access_token")String accessToken);
+    @RequestConverter(MenuCreateRequestConverter.class)
+    Call<Status> create(@Body List<Button> buttons, @Query("access_token")String accessToken);
+
+    @GET("menu/get")
+    @ResponseConverter(MenuGetResponseConverter.class)
+    Call<List<Menu>> get(@Query("access_token")String accessToken);
 
 }

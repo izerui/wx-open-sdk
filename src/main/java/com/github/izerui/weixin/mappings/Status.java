@@ -35,4 +35,9 @@ public class Status implements Serializable{
     public boolean isSuccess(){
         return errCode==null||errCode.equals("0");
     }
+
+    @Override
+    public String toString() {
+        return String.format("Status[errCode=%s,errMsg=%s]",errCode,errMsg);
+    }
 }

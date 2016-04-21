@@ -1,7 +1,8 @@
 package junit;
 
-import com.github.izerui.weixin.support.MenuType;
 import com.github.izerui.weixin.mappings.Menu;
+import com.github.izerui.weixin.support.ButtonType;
+import com.github.izerui.weixin.mappings.Button;
 import com.github.izerui.weixin.mappings.Status;
 import org.junit.Test;
 
@@ -15,17 +16,23 @@ import java.util.List;
 public class MenuJunit extends BaseJunit {
 
     @Test
-    public void createMenus() throws IOException {
+    public void create() throws IOException {
 
-        List<Menu> menus = new ArrayList<Menu>();
+        List<Button> buttons = new ArrayList<Button>();
 
-        Menu menu = new Menu();
-        menu.setName("多大1");
-        menu.setType(MenuType.click);
-        menu.setKey("jsjdf");
-        menus.add(menu);
+        Button button = new Button();
+        button.setName("多大1");
+        button.setType(ButtonType.click);
+        button.setKey("jsjdf");
+        buttons.add(button);
 
-        Status status = engine.getMenuService(accessToken).createMenus(menus);
-        System.out.println(status.getErrCode());
+        Status status = engine.getMenuService(accessToken).create(buttons);
+        System.out.println(status.getErrMsg());
+    }
+
+    @Test
+    public void get(){
+        List<Menu> buttons = engine.getMenuService(accessToken).get();
+        System.out.println(buttons);
     }
 }

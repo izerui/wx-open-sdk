@@ -1,5 +1,6 @@
 package com.github.izerui.weixin;
 
+import com.github.izerui.weixin.mappings.Button;
 import com.github.izerui.weixin.mappings.Menu;
 import com.github.izerui.weixin.mappings.Status;
 
@@ -10,5 +11,7 @@ import java.util.List;
  */
 public interface MenuService{
 
-    Status createMenus(List<Menu> menus);
+    Status create(List<Button> buttons);
+
+    List<Menu> get();
 }

@@ -1,74 +1,125 @@
 package com.github.izerui.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.izerui.weixin.support.MenuType;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by serv on 16/4/19.
+ * Created by serv on 16/4/21.
  */
 public class Menu implements Serializable {
 
-    @JsonProperty("type")
-    private MenuType type;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("key")
-    private String key;
-    @JsonProperty("url")
-    private String url;
-    @JsonProperty("media_id")
-    private String mediaId;
-    @JsonProperty("sub_button")
-    private List<Menu> subButton;
+    private List<Button> button;
 
-    public MenuType getType() {
-        return type;
+    @JsonProperty("menuid")
+    private Integer menuId;
+
+    private Matchrule matchrule;
+
+    public List<Button> getButton() {
+        return button;
     }
 
-    public void setType(MenuType type) {
-        this.type = type;
+    public void setButton(List<Button> button) {
+        this.button = button;
     }
 
-    public String getName() {
-        return name;
+    public Integer getMenuId() {
+        return menuId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
     }
 
-    public String getKey() {
-        return key;
+    public Matchrule getMatchrule() {
+        return matchrule;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setMatchrule(Matchrule matchrule) {
+        this.matchrule = matchrule;
     }
 
-    public String getUrl() {
-        return url;
+
+    @Override
+    public String toString() {
+        return String.format("Menu[menuId=%s,button=%s,matchrule=%s]",menuId,button,matchrule);
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public static class Matchrule{
+
+        @JsonProperty("group_id")
+        private Integer groupId;
+
+        @JsonProperty("sex")
+        private Integer sex;
+
+        @JsonProperty("country")
+        private String country;
+
+        @JsonProperty("province")
+        private String province;
+
+        @JsonProperty("city")
+        private String city;
+
+        @JsonProperty("client_platform_type")
+        private String clientPlatformType;
+
+
+        public Integer getGroupId() {
+            return groupId;
+        }
+
+        public void setGroupId(Integer groupId) {
+            this.groupId = groupId;
+        }
+
+        public Integer getSex() {
+            return sex;
+        }
+
+        public void setSex(Integer sex) {
+            this.sex = sex;
+        }
+
+        public String getCountry() {
+            return country;
+        }
+
+        public void setCountry(String country) {
+            this.country = country;
+        }
+
+        public String getProvince() {
+            return province;
+        }
+
+        public void setProvince(String province) {
+            this.province = province;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public String getClientPlatformType() {
+            return clientPlatformType;
+        }
+
+        public void setClientPlatformType(String clientPlatformType) {
+            this.clientPlatformType = clientPlatformType;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("Matchrule[groupId=%s,sex=%s,country=%s,province=%s,city=%s,clientPlatformType=%s]",groupId,sex,country,province,city,clientPlatformType);
+        }
     }
 
-    public String getMediaId() {
-        return mediaId;
-    }
-
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
-    }
-
-    public List<Menu> getSubButton() {
-        return subButton;
-    }
-
-    public void setSubButton(List<Menu> subButton) {
-        this.subButton = subButton;
-    }
 }
