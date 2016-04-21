@@ -14,9 +14,9 @@ import java.util.List;
 /**
  * Created by serv on 16/4/21.
  */
-public class GroupsRequestConverter extends JacksonResponseBodyConverter<List<Group>> {
+public class GroupListRequestConverter extends JacksonResponseBodyConverter<List<Group>> {
 
-    public GroupsRequestConverter(Type type, ObjectMapper mapper) {
+    public GroupListRequestConverter(Type type, ObjectMapper mapper) {
         super(type, mapper);
     }
 

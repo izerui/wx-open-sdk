@@ -15,9 +15,9 @@ import java.util.List;
 /**
  * Created by serv on 16/4/21.
  */
-public class MenuGetResponseConverter extends JacksonResponseBodyConverter<List<Menu>>{
+public class MenuListResponseConverter extends JacksonResponseBodyConverter<List<Menu>>{
 
-    public MenuGetResponseConverter(Type type, ObjectMapper mapper) {
+    public MenuListResponseConverter(Type type, ObjectMapper mapper) {
         super(type, mapper);
     }
 

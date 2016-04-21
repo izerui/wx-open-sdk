@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MenuCreateRequestConverter extends JacksonRequestBodyConverter<List<Button>> {
+public class ButtonListRequestConverter extends JacksonRequestBodyConverter<List<Button>> {
 
-    public MenuCreateRequestConverter(Type type, ObjectMapper mapper) {
+    public ButtonListRequestConverter(Type type, ObjectMapper mapper) {
         super(type, mapper);
     }
 

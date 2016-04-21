@@ -1,6 +1,6 @@
 package com.github.izerui.weixin.api;
 
-import com.github.izerui.weixin.converter.GroupsRequestConverter;
+import com.github.izerui.weixin.converter.GroupListRequestConverter;
 import com.github.izerui.weixin.support.ResponseConverter;
 import com.github.izerui.weixin.mappings.Group;
 import retrofit2.Call;
@@ -15,6 +15,6 @@ import java.util.List;
 public interface GroupApi {
 
     @GET("groups/get")
-    @ResponseConverter(GroupsRequestConverter.class)
+    @ResponseConverter(GroupListRequestConverter.class)
     Call<List<Group>> groups(@Query("access_token") String accessToken);
 }

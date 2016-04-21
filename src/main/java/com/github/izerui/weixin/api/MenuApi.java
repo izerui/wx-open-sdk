@@ -1,14 +1,13 @@
 package com.github.izerui.weixin.api;
 
-import com.github.izerui.weixin.converter.MenuCreateRequestConverter;
-import com.github.izerui.weixin.converter.MenuGetResponseConverter;
+import com.github.izerui.weixin.converter.ButtonListRequestConverter;
+import com.github.izerui.weixin.converter.MenuListResponseConverter;
 import com.github.izerui.weixin.converter.StringResponseConverter;
 import com.github.izerui.weixin.mappings.Button;
 import com.github.izerui.weixin.mappings.Menu;
 import com.github.izerui.weixin.mappings.Status;
 import com.github.izerui.weixin.support.RequestConverter;
 import com.github.izerui.weixin.support.ResponseConverter;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -23,11 +22,11 @@ import java.util.List;
 public interface MenuApi {
 
     @POST("menu/create")
-    @RequestConverter(MenuCreateRequestConverter.class)
+    @RequestConverter(ButtonListRequestConverter.class)
     Call<Status> create(@Body List<Button> buttons, @Query("access_token")String accessToken);
 
     @GET("menu/get")
-    @ResponseConverter(MenuGetResponseConverter.class)
+    @ResponseConverter(MenuListResponseConverter.class)
     Call<List<Menu>> get(@Query("access_token")String accessToken);
 
     @GET("menu/delete")
