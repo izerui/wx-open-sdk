@@ -1,17 +1,16 @@
 /**
- *            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- *                    Version 2, December 2004
+ *          你他妈的想干嘛就干嘛公共许可证
+ *               第二版，2004年12月
  *
- * Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+ * 版权所有(C) 2004 桑·奥塞瓦<sam@hocevar.net>
  *
- * Everyone is permitted to copy and distribute verbatim or modified
- * copies of this license document, and changing it is allowed as long
- * as the name is changed.
+ * 任何人都有复制与发布本协议的原始或修改过的版本的权利。
+ * 若本协议被修改，须修改协议名称。
  *
- *            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- *   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ *          你他妈的想干嘛就干嘛公共许可证
+ *              复制、发布和修改条款
  *
- *  0. You just DO WHAT THE FUCK YOU WANT TO.
+ *  0. 你只要他妈的想干嘛就干嘛好了。
  */
 package com.github.izerui.weixin.support;
 
