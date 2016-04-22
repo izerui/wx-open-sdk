@@ -56,9 +56,4 @@ public class MenuJunit extends BaseJunit {
         System.out.println(delete);
     }
 
-    @Test
-    public void getCurrentSelfmenuInfo(){
-        String currentSelfmenuInfo = engine.getMenuService(accessToken).getCurrentSelfmenuInfo();
-        System.out.println(currentSelfmenuInfo);
-    }
 }

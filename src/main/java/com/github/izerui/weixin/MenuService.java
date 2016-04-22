@@ -31,5 +31,4 @@ public interface MenuService{
 
     Status delete();
 
-    String getCurrentSelfmenuInfo();
 }

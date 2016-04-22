@@ -7,6 +7,9 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: "com.github.hierynomus.license"
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 buildscript {
     repositories {
         maven {
