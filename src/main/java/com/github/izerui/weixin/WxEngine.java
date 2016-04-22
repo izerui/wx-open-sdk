@@ -17,6 +17,7 @@ public class WxEngine {
     private GroupService groupService;
     private MessageService messageService;
     private UserService userService;
+    private CommonService commonService;
 
     public WxEngine() {
         retrofit = builder().build();
@@ -34,6 +35,7 @@ public class WxEngine {
         groupService = new GroupServiceImpl(retrofit);
         messageService = new MessageServiceImpl(retrofit);
         userService = new UserServiceImpl(retrofit);
+        commonService = new CommonServiceImpl(retrofit);
     }
 
     protected Retrofit.Builder builder(){
@@ -60,5 +62,9 @@ public class WxEngine {
 
     public UserService getUserService(String accessToken){
         return ((ServiceImpl<?>)userService).setAccessToken(accessToken);
+    }
+
+    public CommonService getCommonService(String accessToken){
+        return ((ServiceImpl<?>)commonService).setAccessToken(accessToken);
     }
 }

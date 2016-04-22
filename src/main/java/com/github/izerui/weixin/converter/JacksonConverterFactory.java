@@ -16,11 +16,7 @@
 package com.github.izerui.weixin.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.izerui.weixin.support.RequestConverter;
-import com.github.izerui.weixin.support.ResponseConverter;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Converter;
+import com.github.izerui.weixin.support.Converter;
 import retrofit2.Retrofit;
 
 import java.lang.annotation.Annotation;
@@ -28,14 +24,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 
 /**
- * A {@linkplain Converter.Factory converter} which uses Jackson.
+ * A {@linkplain retrofit2.Converter.Factory converter} which uses Jackson.
  * <p>
  * Because Jackson is so flexible in the types it supports, this converter assumes that it can
  * handle all types. If you are mixing JSON serialization with something else (such as protocol
- * buffers), you must {@linkplain Retrofit.Builder#addConverterFactory(Converter.Factory) add this
+ * buffers), you must {@linkplain Retrofit.Builder#addConverterFactory(retrofit2.Converter.Factory) add this
  * instance} last to allow the other converters a chance to see their types.
  */
-public final class JacksonConverterFactory extends Converter.Factory {
+public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
   /** Create an instance using a default {@link ObjectMapper} instance for conversion. */
   public static JacksonConverterFactory create() {
     return create(new ObjectMapper());
@@ -54,14 +50,14 @@ public final class JacksonConverterFactory extends Converter.Factory {
   }
 
   @Override
-  public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
-      Retrofit retrofit) {
+  public retrofit2.Converter responseBodyConverter(Type type, Annotation[] annotations,
+                                                   Retrofit retrofit) {
 
     for (Annotation annotation : annotations){
-      if(annotation instanceof ResponseConverter){
+      if(annotation instanceof Converter){
         try {
-          Constructor constructor = ((ResponseConverter) annotation).value().getConstructor(Type.class,ObjectMapper.class);
-          return (Converter<ResponseBody, ?>) constructor.newInstance(type,mapper);
+          Constructor constructor = ((Converter) annotation).response().getConstructor(Type.class,ObjectMapper.class);
+          return (retrofit2.Converter) constructor.newInstance(type,mapper);
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -73,14 +69,14 @@ public final class JacksonConverterFactory extends Converter.Factory {
   }
 
   @Override
-  public Converter<?, RequestBody> requestBodyConverter(Type type,
-      Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+  public retrofit2.Converter requestBodyConverter(Type type,
+                                                  Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
 
     for (Annotation annotation : methodAnnotations){
-      if(annotation instanceof RequestConverter){
+      if(annotation instanceof Converter){
         try {
-          Constructor constructor = ((RequestConverter) annotation).value().getConstructor(Type.class,ObjectMapper.class);
-          return (Converter<?, RequestBody>) constructor.newInstance(type,mapper);
+          Constructor constructor = ((Converter) annotation).request().getConstructor(Type.class,ObjectMapper.class);
+          return (retrofit2.Converter) constructor.newInstance(type,mapper);
         } catch (Exception e) {
           e.printStackTrace();
         }
