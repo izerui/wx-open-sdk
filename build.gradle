@@ -5,6 +5,24 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: "com.github.hierynomus.license"
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
+    }
+}
+
+license {
+    header rootProject.file('license.txt')
+    include "**/*.java"
+}
+
 
 repositories{
     mavenCentral()
