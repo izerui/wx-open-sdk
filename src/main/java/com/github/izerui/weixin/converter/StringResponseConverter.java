@@ -30,7 +30,7 @@ public class StringResponseConverter extends JacksonResponseBodyConverter<String
     }
 
     @Override
-    public String convert(ResponseBody value) throws IOException {
-        return value.string();
+    protected String convert(String value) throws IOException {
+        return value;
     }
 }

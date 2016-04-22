@@ -30,7 +30,7 @@ public class TextRequestConverter extends JacksonRequestBodyConverter<String> {
     }
 
     @Override
-    public RequestBody convert(String value) throws IOException {
-        return super.convert(value);
+    public byte[] convertBytes(String value) throws IOException {
+        return value.getBytes("UTF-8");
     }
 }

@@ -18,7 +18,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.github.izerui.weixin.mappings.Group;
-import okhttp3.ResponseBody;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -35,8 +34,8 @@ public class GroupListResponseConverter extends JacksonResponseBodyConverter<Lis
     }
 
     @Override
-    public List<Group> convert(ResponseBody value) throws IOException {
-        JsonNode jsonNode = mapper.readTree(value.string());
+    protected List<Group> convert(String responseBody) throws IOException {
+        JsonNode jsonNode = mapper.readTree(responseBody);
 
         CollectionType collectionType = mapper.getTypeFactory()
                 .constructCollectionType(ArrayList.class, Group.class);

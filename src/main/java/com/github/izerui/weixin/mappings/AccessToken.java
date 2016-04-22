@@ -16,10 +16,12 @@ package com.github.izerui.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * Created by serv on 16/4/15.
  */
-public class AccessToken extends Status {
+public class AccessToken implements Serializable {
 
     @JsonProperty("access_token")
     private String accessToken;

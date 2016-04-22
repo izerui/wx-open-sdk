@@ -36,9 +36,9 @@ public class MenuListResponseConverter extends JacksonResponseBodyConverter<List
     }
 
     @Override
-    public List<Menu> convert(ResponseBody value) throws IOException {
+    protected List<Menu> convert(String responseBody) throws IOException {
         List<Menu> menus = new ArrayList<>();
-        JsonNode jsonNode = mapper.readTree(value.string());
+        JsonNode jsonNode = mapper.readTree(responseBody);
         Menu defaultMenu = mapper.readValue(jsonNode.path("menu").toString(), Menu.class);
         menus.add(defaultMenu);
 

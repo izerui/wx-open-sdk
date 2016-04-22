@@ -39,4 +39,9 @@ public class GroupServiceImpl extends ServiceImpl<GroupApi> implements GroupServ
     public List<Group> groups() {
         return execute(api().groups(accessToken));
     }
+
+    @Override
+    public Group create(String name) {
+        return execute(api().create(name,accessToken));
+    }
 }

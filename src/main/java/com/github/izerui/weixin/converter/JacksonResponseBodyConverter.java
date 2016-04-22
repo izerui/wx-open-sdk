@@ -1,44 +1,63 @@
 /**
- *          你他妈的想干嘛就干嘛公共许可证
- *               第二版，2004年12月
- *
+ * 你他妈的想干嘛就干嘛公共许可证
+ * 第二版，2004年12月
+ * <p/>
  * 版权所有(C) 2004 桑·奥塞瓦<sam@hocevar.net>
- *
+ * <p/>
  * 任何人都有复制与发布本协议的原始或修改过的版本的权利。
  * 若本协议被修改，须修改协议名称。
- *
- *          你他妈的想干嘛就干嘛公共许可证
- *              复制、发布和修改条款
- *
- *  0. 你只要他妈的想干嘛就干嘛好了。
+ * <p/>
+ * 你他妈的想干嘛就干嘛公共许可证
+ * 复制、发布和修改条款
+ * <p/>
+ * 0. 你只要他妈的想干嘛就干嘛好了。
  */
 package com.github.izerui.weixin.converter;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
-
+import com.github.izerui.weixin.WxException;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
+
 public class JacksonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
-  protected final ObjectMapper mapper;
-  protected final Type type;
+    protected final ObjectMapper mapper;
+    protected final Type type;
 
-  public JacksonResponseBodyConverter(Type type, ObjectMapper mapper) {
-    this.type = type;
-    this.mapper = mapper;
-  }
-
-  @Override public T convert(ResponseBody value) throws IOException {
-    try {
-      return (T)mapper.readValue(value.string(),Class.forName(type.getTypeName()));
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      value.close();
+    public JacksonResponseBodyConverter(Type type, ObjectMapper mapper) {
+        this.type = type;
+        this.mapper = mapper;
     }
-    return null;
-  }
+
+    @Override
+    public final T convert(ResponseBody value) throws IOException {
+        String responseBody = value.string();
+        try {
+            JsonNode jsonNode = mapper.readTree(responseBody);
+            if(jsonNode.has("errcode")){
+                int errcode = jsonNode.path("errcode").asInt();
+                if(errcode!=0){
+                    throw new WxException(errcode,jsonNode.path("errmsg").asText());
+                }
+            }
+            return convert(responseBody);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                value.close();
+            }catch (Exception e){
+                // do nothing
+            }
+        }
+        return null;
+    }
+
+    protected T convert(String responseBody) throws WxException, IOException, ClassNotFoundException {
+        return (T) mapper.readValue(responseBody, Class.forName(type.getTypeName()));
+    }
+
 }

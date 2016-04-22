@@ -16,7 +16,6 @@ package com.github.izerui.weixin.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.izerui.weixin.mappings.Message;
-import okhttp3.RequestBody;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -31,7 +30,7 @@ public class MessageRequestConverter extends JacksonRequestBodyConverter<Message
     }
 
     @Override
-    public RequestBody convert(Message value) throws IOException {
-        return RequestBody.create(MEDIA_TYPE, value.toJson().getBytes("UTF-8"));
+    public byte[] convertBytes(Message value) throws IOException {
+        return value.toJson().getBytes("UTF-8");
     }
 }

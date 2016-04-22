@@ -23,4 +23,5 @@ import java.util.List;
  */
 public interface GroupService {
     List<Group> groups();
+    Group create(String name);
 }

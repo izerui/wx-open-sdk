@@ -46,10 +46,10 @@ public abstract class ServiceImpl<T>{
             if(response.isSuccessful()){
                 return response.body();
             }else {
-                throw new WxException(response.errorBody().string());
+                throw new WxException(-100,response.errorBody().string());
             }
         } catch (IOException e) {
-            throw new WxException(e.getMessage());
+            throw new WxException(-101,e.getMessage());
         }
     }
 
@@ -79,7 +79,7 @@ public abstract class ServiceImpl<T>{
     protected T api(){
         Class<T> apiClass = getApiClass();
         if(apiClass==null){
-            throw new WxException("api class must not be null!");
+            throw new WxException(-102,"api class must not be null!");
         }
         return retrofit.create(apiClass);
     }

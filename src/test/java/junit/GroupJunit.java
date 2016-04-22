@@ -14,10 +14,12 @@
  */
 package junit;
 
+import com.github.izerui.weixin.WxException;
 import com.github.izerui.weixin.mappings.Group;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by serv on 16/4/21.
@@ -25,10 +27,21 @@ import java.util.List;
 public class GroupJunit extends BaseJunit{
 
     @Test
+    public void test0(){
+        System.out.println("s");
+    }
+
+    @Test
     public void groups(){
 
         List<Group> groups = engine.getGroupService(accessToken).groups();
         System.out.println(groups.toString());
+    }
+
+    @Test
+    public void create(){
+        Group group = engine.getGroupService(accessToken).create("ddd");
+        System.out.println(group);
     }
 
 }

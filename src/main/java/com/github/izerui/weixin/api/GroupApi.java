@@ -14,11 +14,15 @@
  */
 package com.github.izerui.weixin.api;
 
+import com.github.izerui.weixin.converter.GroupCreateRequestConverter;
+import com.github.izerui.weixin.converter.GroupCreateResponseConverter;
 import com.github.izerui.weixin.converter.GroupListResponseConverter;
 import com.github.izerui.weixin.support.Converter;
 import com.github.izerui.weixin.mappings.Group;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import java.util.List;
@@ -31,4 +35,8 @@ public interface GroupApi {
     @GET("groups/get")
     @Converter(response = GroupListResponseConverter.class)
     Call<List<Group>> groups(@Query("access_token") String accessToken);
+
+    @POST("groups/create")
+    @Converter(request = GroupCreateRequestConverter.class,response = GroupCreateResponseConverter.class)
+    Call<Group> create(@Body String name,@Query("access_token") String accessToken);
 }

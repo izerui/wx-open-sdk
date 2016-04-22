@@ -19,15 +19,28 @@ package com.github.izerui.weixin;
  */
 public class WxException extends RuntimeException {
 
-    public WxException() {
-        super();
+    private int errcode;
+
+    public WxException(int errcode) {
+        this.errcode = errcode;
     }
 
-    public WxException(String message) {
+    public WxException(int errcode , String message) {
         super(message);
+        this.errcode = errcode;
     }
 
-    public WxException(String message, Throwable cause) {
+    public WxException(int errcode , String message, Throwable cause) {
         super(message, cause);
+        this.errcode = errcode;
+    }
+
+    public int getErrcode() {
+        return errcode;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("WxException[errcode=%s,errmsg=%s]",errcode,getMessage());
     }
 }
