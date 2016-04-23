@@ -14,8 +14,6 @@
  */
 package com.github.izerui.weixin.converter;
 
-import com.github.izerui.weixin.converter.JacksonConverter;
-
 import java.lang.annotation.*;
 
 /**

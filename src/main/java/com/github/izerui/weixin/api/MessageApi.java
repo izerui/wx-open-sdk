@@ -15,10 +15,10 @@
 package com.github.izerui.weixin.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.izerui.weixin.converter.Converter;
 import com.github.izerui.weixin.converter.JacksonConverter;
 import com.github.izerui.weixin.mappings.Message;
 import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.converter.Converter;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

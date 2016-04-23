@@ -18,8 +18,6 @@ import com.github.izerui.weixin.CommonService;
 import com.github.izerui.weixin.api.CommonApi;
 import retrofit2.Retrofit;
 
-import java.util.Map;
-
 /**
  * Created by serv on 16/4/22.
  */

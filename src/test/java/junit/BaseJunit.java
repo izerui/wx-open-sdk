@@ -17,8 +17,6 @@ package junit;
 import com.github.izerui.weixin.WxEngine;
 import com.github.izerui.weixin.mappings.AccessToken;
 import org.junit.Before;
-import retrofit2.Call;
-import retrofit2.Response;
 
 /**
  * Created by serv on 16/4/16.

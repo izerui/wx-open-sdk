@@ -16,7 +16,6 @@ package junit;
 
 import com.github.izerui.weixin.MessageService;
 import com.github.izerui.weixin.mappings.Message;
-import com.github.izerui.weixin.mappings.Status;
 import org.junit.Test;
 
 import java.util.ArrayList;

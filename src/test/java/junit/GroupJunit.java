@@ -14,12 +14,10 @@
  */
 package junit;
 
-import com.github.izerui.weixin.WxException;
 import com.github.izerui.weixin.mappings.Group;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by serv on 16/4/21.
