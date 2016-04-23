@@ -78,7 +78,7 @@ public class WxEngine {
         return ((ServiceImpl<?>)userService).setAccessToken(accessToken);
     }
 
-    public CommonService getCommonService(String accessToken){
-        return ((ServiceImpl<?>)commonService).setAccessToken(accessToken);
+    public CommonService getCommonService(){
+        return commonService;
     }
 }

@@ -24,7 +24,7 @@ public class CommonJunit extends BaseJunit {
 
     @Test
     public void test01(){
-        String post = engine.getCommonService(accessToken).post(
+        String post = engine.getCommonService().post(
                 "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + accessToken,
                 "{\n" +
                         "  \"touser\":\"OPENID\", \n" +
@@ -40,8 +40,9 @@ public class CommonJunit extends BaseJunit {
 
     @Test
     public void test02(){
-        String get = engine.getCommonService(accessToken).get(
+        String get = engine.getCommonService().get(
                 "https://api.weixin.qq.com/cgi-bin/user/get?access_token=" + accessToken);
         System.out.println(get);
     }
+
 }
