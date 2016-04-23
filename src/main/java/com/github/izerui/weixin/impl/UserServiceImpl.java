@@ -16,10 +16,7 @@ package com.github.izerui.weixin.impl;
 
 import com.github.izerui.weixin.UserService;
 import com.github.izerui.weixin.api.UserApi;
-import com.github.izerui.weixin.mappings.ArrayUser;
-import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.mappings.OneUser;
-import com.github.izerui.weixin.mappings.Users;
+import com.github.izerui.weixin.mappings.*;
 import retrofit2.Retrofit;
 
 /**
@@ -55,5 +52,10 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
     @Override
     public Status move(ArrayUser arrayUser) {
         return execute(api().moveArray(arrayUser,accessToken));
+    }
+
+    @Override
+    public Status updateRemark(UserRemark userRemark) {
+        return execute(api().updateRemark(userRemark,accessToken));
     }
 }

@@ -17,10 +17,7 @@ package com.github.izerui.weixin.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.izerui.weixin.converter.Converter;
 import com.github.izerui.weixin.converter.JacksonConverter;
-import com.github.izerui.weixin.mappings.ArrayUser;
-import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.mappings.OneUser;
-import com.github.izerui.weixin.mappings.Users;
+import com.github.izerui.weixin.mappings.*;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -47,6 +44,9 @@ public interface UserApi {
 
     @POST("groups/members/batchupdate")
     Call<Status> moveArray(@Body ArrayUser arrayUser,@Query("access_token")String accessToken);
+
+    @POST("user/info/updateremark")
+    Call<Status> updateRemark(@Body UserRemark userRemark, @Query("access_token")String accessToken);
 
     class GetGroupConverter extends JacksonConverter<String,Integer> {
 

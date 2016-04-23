@@ -14,10 +14,7 @@
  */
 package com.github.izerui.weixin;
 
-import com.github.izerui.weixin.mappings.ArrayUser;
-import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.mappings.OneUser;
-import com.github.izerui.weixin.mappings.Users;
+import com.github.izerui.weixin.mappings.*;
 
 /**
  * Created by serv on 16/4/21.
@@ -31,4 +28,6 @@ public interface UserService {
     Status move(OneUser oneUser);
 
     Status move(ArrayUser arrayUser);
+
+    Status updateRemark(UserRemark userRemark);
 }

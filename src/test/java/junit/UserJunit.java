@@ -14,10 +14,7 @@
  */
 package junit;
 
-import com.github.izerui.weixin.mappings.ArrayUser;
-import com.github.izerui.weixin.mappings.OneUser;
-import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.mappings.Users;
+import com.github.izerui.weixin.mappings.*;
 import org.junit.Test;
 
 /**
@@ -48,6 +45,13 @@ public class UserJunit extends BaseJunit {
     public void moveUsers(){
         Status move = engine.getUserService(accessToken).move(new ArrayUser(1, "oTDoKtx09l8il-jM1TtdeGs_fHT4","oTDoKtyOsM5Eo7AIVTidlm6nXHtA"));
         System.out.println(move);
+    }
+
+    @Test
+    public void updateRemark(){
+        Status hello = engine.getUserService(accessToken).updateRemark(new UserRemark("oTDoKtx09l8il-jM1TtdeGs_fHT4", "哈喽"));
+        System.out.println(hello);
+
     }
 
 }
