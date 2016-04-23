@@ -24,7 +24,9 @@ import com.github.izerui.weixin.mappings.Users;
  */
 public interface UserService {
 
-    Users get(String nextOpenId);
+    Users getUsers(String nextOpenId);
+
+    Integer getGroup(String openId);
 
     Status move(OneUser oneUser);
 

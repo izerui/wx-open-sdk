@@ -25,6 +25,6 @@ import java.util.List;
 public interface GroupService {
     List<Group> groups();
     Group create(String name);
-    Integer getUserGroup(String openId);
     Status update(Group group);
+    Status delete(Integer groupId);
 }

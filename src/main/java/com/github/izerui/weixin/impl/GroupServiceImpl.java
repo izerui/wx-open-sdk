@@ -47,12 +47,12 @@ public class GroupServiceImpl extends ServiceImpl<GroupApi> implements GroupServ
     }
 
     @Override
-    public Integer getUserGroup(String openId) {
-        return execute(api().getUserGroup(openId,accessToken));
+    public Status update(Group group) {
+        return execute(api().update(group,accessToken));
     }
 
     @Override
-    public Status update(Group group) {
-        return execute(api().update(group,accessToken));
+    public Status delete(Integer groupId) {
+        return execute(api().delete(groupId,accessToken));
     }
 }

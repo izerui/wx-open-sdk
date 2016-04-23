@@ -45,13 +45,13 @@ public interface GroupApi {
     @Converter(CreateConverter.class)
     Call<Group> create(@Body String name,@Query("access_token") String accessToken);
 
-    @POST("groups/getid")
-    @Converter(GetUserGroupConverter.class)
-    Call<Integer> getUserGroup(@Body String openId,@Query("access_token")String accessToken);
-
     @POST("groups/update")
     @Converter(UpdateGroupConverter.class)
-    Call<Status> update(@Body Group group, @Query("access_token")String accessToken);
+    Call<Status> update(@Body Group group, @Query("access_token") String accessToken);
+
+    @POST("groups/delete")
+    @Converter(DeleteConverter.class)
+    Call<Status> delete(@Body Integer groupId,@Query("access_token") String accessToken);
 
 
     class GroupsConverter extends JacksonConverter<Void,List<Group>>{
@@ -79,19 +79,6 @@ public interface GroupApi {
         }
     }
 
-    class GetUserGroupConverter extends JacksonConverter<String,Integer> {
-
-        @Override
-        public Integer response(ObjectMapper mapper, Type type, byte[] response) throws IOException {
-            return mapper.readTree(response).path("groupid").asInt();
-        }
-
-        @Override
-        public byte[] request(ObjectMapper mapper, Type type, String value) throws IOException {
-            return String.format("{\"openid\":\"%s\"}",value).getBytes(CHARSET_UTF8);
-        }
-    }
-
     class UpdateGroupConverter extends JacksonConverter<Group,String> {
         @Override
         public byte[] request(ObjectMapper mapper, Type type, Group group) throws IOException {
@@ -99,4 +86,11 @@ public interface GroupApi {
         }
     }
 
+    class DeleteConverter extends JacksonConverter<Integer,Status> {
+
+        @Override
+        public byte[] request(ObjectMapper mapper, Type type, Integer groupId) throws IOException {
+            return String.format("{\"group\":{\"id\":%s}}",groupId).getBytes(CHARSET_UTF8);
+        }
+    }
 }

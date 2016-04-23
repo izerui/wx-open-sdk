@@ -44,15 +44,15 @@ public class GroupJunit extends BaseJunit{
     }
 
     @Test
-    public void getUserGroup(){
-        Integer userGroup = engine.getGroupService(accessToken).getUserGroup("oTDoKt-0csI5Phsl1TqpUiBKm_cw");
-        System.out.println(userGroup);
-    }
-
-    @Test
     public void update(){
         Status update = engine.getGroupService(accessToken).update(new Group(100, "123321123321"));
         System.out.println(update);
+    }
+
+    @Test
+    public void delete(){
+        Status delete = engine.getGroupService(accessToken).delete(106);
+        System.out.println(delete);
     }
 
 }

@@ -37,8 +37,14 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
     }
 
     @Override
-    public Users get(String nextOpenId) {
-        return execute(api().get(nextOpenId,accessToken));
+    public Users getUsers(String nextOpenId) {
+        return execute(api().getUsers(nextOpenId,accessToken));
+    }
+
+
+    @Override
+    public Integer getGroup(String openId) {
+        return execute(api().getGroup(openId,accessToken));
     }
 
     @Override
