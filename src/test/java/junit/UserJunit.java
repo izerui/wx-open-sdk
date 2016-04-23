@@ -54,4 +54,10 @@ public class UserJunit extends BaseJunit {
 
     }
 
+    @Test
+    public void userInfo(){
+        UserInfo userInfo = engine.getUserService(accessToken).userInfo("oTDoKtx09l8il-jM1TtdeGs_fHT4");
+        System.out.println(userInfo);
+    }
+
 }

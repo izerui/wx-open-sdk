@@ -48,6 +48,9 @@ public interface UserApi {
     @POST("user/info/updateremark")
     Call<Status> updateRemark(@Body UserRemark userRemark, @Query("access_token")String accessToken);
 
+    @GET("user/info")
+    Call<UserInfo> userInfo(@Query("openid")String openId,@Query("lang") String lang,@Query("access_token")String accessToken);
+
     class GetGroupConverter extends JacksonConverter<String,Integer> {
 
         @Override

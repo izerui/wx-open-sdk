@@ -58,4 +58,9 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
     public Status updateRemark(UserRemark userRemark) {
         return execute(api().updateRemark(userRemark,accessToken));
     }
+
+    @Override
+    public UserInfo userInfo(String openId) {
+        return execute(api().userInfo(openId, "zh_CN", accessToken));
+    }
 }

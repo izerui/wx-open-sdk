@@ -12,7 +12,7 @@
  *
  *  0. 你只要他妈的想干嘛就干嘛好了。
  */
-package tobeused.vo;
+package com.github.izerui.weixin.mappings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -234,5 +234,14 @@ public class UserInfo implements Serializable{
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("UserInfo[subscribe=%s,openId=%s,nickName=%s,sex=%s," +
+                "language=%s,city=%s,province=%s,country=%s,headImgUrl=%s," +
+                "subscribeTime=%s,unionId=%s,remark=%s,groupId=%s,privilege=%s,appId=%s]",
+                subscribe,openId,nickName,sex,language,city,province,country,headImgUrl,
+                subscribeTime,unionId,remark,groupId,privilege,appId);
     }
 }
