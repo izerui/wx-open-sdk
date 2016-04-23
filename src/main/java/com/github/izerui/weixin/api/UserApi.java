@@ -14,8 +14,9 @@
  */
 package com.github.izerui.weixin.api;
 
+import com.github.izerui.weixin.mappings.ArrayUser;
 import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.mappings.UserGroup;
+import com.github.izerui.weixin.mappings.OneUser;
 import com.github.izerui.weixin.mappings.Users;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -32,5 +33,8 @@ public interface UserApi {
     Call<Users> get(@Query("next_openid")String nextOpenId, @Query("access_token")String accessToken);
 
     @POST("groups/members/update")
-    Call<Status> move(@Body UserGroup userGroup, @Query("access_token")String accessToken);
+    Call<Status> moveOne(@Body OneUser oneUser, @Query("access_token")String accessToken);
+
+    @POST("groups/members/batchupdate")
+    Call<Status> moveArray(@Body ArrayUser arrayUser,@Query("access_token")String accessToken);
 }

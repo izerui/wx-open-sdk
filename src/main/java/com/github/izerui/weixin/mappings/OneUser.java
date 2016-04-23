@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by serv on 16/4/23.
  */
-public class UserGroup implements Serializable {
+public class OneUser implements Serializable {
 
     @JsonProperty("openid")
     private String openId;
@@ -15,12 +15,9 @@ public class UserGroup implements Serializable {
     @JsonProperty("to_groupid")
     private Integer toGroupId;
 
-    public UserGroup() {
-    }
-
-    public UserGroup(String openId, Integer toGroupId) {
-        this.openId = openId;
+    public OneUser(Integer toGroupId, String openId) {
         this.toGroupId = toGroupId;
+        this.openId = openId;
     }
 
     public String getOpenId() {

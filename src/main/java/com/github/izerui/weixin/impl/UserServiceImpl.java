@@ -16,9 +16,9 @@ package com.github.izerui.weixin.impl;
 
 import com.github.izerui.weixin.UserService;
 import com.github.izerui.weixin.api.UserApi;
-import com.github.izerui.weixin.mappings.Group;
+import com.github.izerui.weixin.mappings.ArrayUser;
 import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.mappings.UserGroup;
+import com.github.izerui.weixin.mappings.OneUser;
 import com.github.izerui.weixin.mappings.Users;
 import retrofit2.Retrofit;
 
@@ -42,7 +42,12 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
     }
 
     @Override
-    public Status move(UserGroup userGroup) {
-        return execute(api().move(userGroup,accessToken));
+    public Status move(OneUser oneUser) {
+        return execute(api().moveOne(oneUser,accessToken));
+    }
+
+    @Override
+    public Status move(ArrayUser arrayUser) {
+        return execute(api().moveArray(arrayUser,accessToken));
     }
 }
