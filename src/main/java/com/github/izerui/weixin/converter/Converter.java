@@ -14,23 +14,16 @@
  */
 package com.github.izerui.weixin.converter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.ResponseBody;
+import com.github.izerui.weixin.converter.JacksonConverter;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
+import java.lang.annotation.*;
 
 /**
- * Created by serv on 16/4/21.
+ * Created by serv on 16/4/19.
  */
-public class StringResponseConverter extends JacksonResponseBodyConverter<String> {
-
-    public StringResponseConverter(Type type, ObjectMapper mapper) {
-        super(type, mapper);
-    }
-
-    @Override
-    protected String convert(String value) throws IOException {
-        return value;
-    }
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Converter {
+    Class<? extends JacksonConverter> value();
 }

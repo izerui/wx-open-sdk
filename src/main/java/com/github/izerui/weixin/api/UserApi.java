@@ -14,14 +14,18 @@
  */
 package com.github.izerui.weixin.api;
 
-import com.github.izerui.weixin.converter.GetUserGroupRequestConverter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.izerui.weixin.converter.JacksonConverter;
 import com.github.izerui.weixin.mappings.Users;
-import com.github.izerui.weixin.support.Converter;
+import com.github.izerui.weixin.converter.Converter;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
 
 /**
  * Created by serv on 16/4/21.
@@ -32,6 +36,22 @@ public interface UserApi {
     Call<Users> get(@Query("next_openid")String nextOpenId, @Query("access_token")String accessToken);
 
     @POST("groups/getid")
-    @Converter(request = GetUserGroupRequestConverter.class)
+    @Converter(GetUserGroupConverter.class)
     Call<Integer> getUserGroup(@Body String openId,@Query("access_token")String accessToken);
+
+
+
+    class GetUserGroupConverter extends JacksonConverter<String,Integer> {
+
+        @Override
+        public Integer response(ObjectMapper mapper, Type type, byte[] response) throws IOException {
+            return mapper.readTree(response).path("groupid").asInt();
+        }
+
+        @Override
+        public byte[] request(ObjectMapper mapper, Type type, String value) throws IOException {
+            return String.format("{\"openid\":\"%s\"}",value).getBytes(CHARSET_UTF8);
+        }
+    }
+
 }

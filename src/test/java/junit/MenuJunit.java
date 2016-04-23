@@ -14,9 +14,8 @@
  */
 package junit;
 
-import com.github.izerui.weixin.mappings.Menu;
-import com.github.izerui.weixin.support.ButtonType;
 import com.github.izerui.weixin.mappings.Button;
+import com.github.izerui.weixin.mappings.Menu;
 import com.github.izerui.weixin.mappings.Status;
 import org.junit.Test;
 
@@ -36,7 +35,7 @@ public class MenuJunit extends BaseJunit {
 
         Button button = new Button();
         button.setName("多大3331");
-        button.setType(ButtonType.click);
+        button.setType(Button.ButtonType.click);
         button.setKey("jsjdf");
         buttons.add(button);
 

@@ -14,14 +14,18 @@
  */
 package com.github.izerui.weixin.api;
 
-import com.github.izerui.weixin.converter.MessageRequestConverter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.izerui.weixin.converter.JacksonConverter;
 import com.github.izerui.weixin.mappings.Message;
 import com.github.izerui.weixin.mappings.Status;
-import com.github.izerui.weixin.support.Converter;
+import com.github.izerui.weixin.converter.Converter;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
 
 /**
  * Created by serv on 16/4/21.
@@ -29,6 +33,17 @@ import retrofit2.http.Query;
 public interface MessageApi {
 
     @POST("message/custom/send")
-    @Converter(request = MessageRequestConverter.class)
+    @Converter(SendConverter.class)
     Call<Status> send(@Body Message message, @Query("access_token")String accessToken);
+
+
+    class SendConverter extends JacksonConverter<Message,Status> {
+
+        @Override
+        public byte[] request(ObjectMapper mapper, Type type, Message message) throws IOException {
+            return message.toJson().getBytes(CHARSET_UTF8);
+        }
+    }
+
+
 }
