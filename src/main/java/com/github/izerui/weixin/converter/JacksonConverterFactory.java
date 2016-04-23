@@ -62,6 +62,19 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
         return new JacksonRequestBodyConverter<>(type, methodAnnotations,mapper);
     }
 
+    private JacksonConverter createConverter(Annotation[] annotations){
+        for (Annotation annotation : annotations) {
+            if (annotation instanceof Converter) {
+                try {
+                    return ((Converter) annotation).value().newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return new JacksonConverter();
+    }
+
     private class JacksonRequestBodyConverter<T> implements retrofit2.Converter<T, RequestBody> {
         protected final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
 
@@ -78,20 +91,7 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
         @Override
         public final RequestBody convert(T value) throws IOException {
 
-            JacksonConverter converter = null;
-            for (Annotation annotation : methodAnnotations) {
-                if (annotation instanceof Converter) {
-                    try {
-                        converter = ((Converter) annotation).value().newInstance();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            if(converter == null){
-                converter = new JacksonConverter();
-            }
+            JacksonConverter converter = createConverter(methodAnnotations);
 
             byte[] bytes = converter.request(mapper,type,value);
 
@@ -114,20 +114,8 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
         @Override
         public final T convert(ResponseBody value) throws IOException {
 
-            JacksonConverter converter = null;
-            for (Annotation annotation : annotations) {
-                if (annotation instanceof Converter) {
-                    try {
-                        converter = ((Converter) annotation).value().newInstance();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            JacksonConverter converter = createConverter(annotations);
 
-            if(converter == null){
-                converter = new JacksonConverter();
-            }
             byte[] bytes = value.bytes();
             converter.preConvertResponse(mapper,type,bytes);
             return (T) converter.response(mapper,type,bytes);
