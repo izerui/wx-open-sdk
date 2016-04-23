@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 
 public class JacksonRequestBodyConverter<T> implements Converter<T, RequestBody> {
+    public static final String CHARSET = "UTF-8";
     protected static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
 
     protected final ObjectMapper mapper;

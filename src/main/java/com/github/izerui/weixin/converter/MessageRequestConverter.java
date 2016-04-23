@@ -31,6 +31,6 @@ public class MessageRequestConverter extends JacksonRequestBodyConverter<Message
 
     @Override
     public byte[] convertBytes(Message value) throws IOException {
-        return value.toJson().getBytes("UTF-8");
+        return value.toJson().getBytes(CHARSET);
     }
 }

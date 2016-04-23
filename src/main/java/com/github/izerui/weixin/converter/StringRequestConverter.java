@@ -30,6 +30,6 @@ public class StringRequestConverter extends JacksonRequestBodyConverter<String> 
 
     @Override
     public byte[] convertBytes(String value) throws IOException {
-        return value.getBytes("UTF-8");
+        return value.getBytes(CHARSET);
     }
 }

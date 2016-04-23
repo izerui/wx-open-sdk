@@ -30,6 +30,6 @@ public class GroupCreateRequestConverter extends JacksonRequestBodyConverter<Str
 
     @Override
     public byte[] convertBytes(String name) throws IOException {
-        return String.format("{\"group\":{\"name\":\"%s\"}}",name).getBytes("UTF-8");
+        return String.format("{\"group\":{\"name\":\"%s\"}}",name).getBytes(CHARSET);
     }
 }
