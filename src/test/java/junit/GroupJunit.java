@@ -15,6 +15,7 @@
 package junit;
 
 import com.github.izerui.weixin.mappings.Group;
+import com.github.izerui.weixin.mappings.Status;
 import org.junit.Test;
 
 import java.util.List;
@@ -40,6 +41,18 @@ public class GroupJunit extends BaseJunit{
     public void create(){
         Group group = engine.getGroupService(accessToken).create("ddd");
         System.out.println(group);
+    }
+
+    @Test
+    public void getUserGroup(){
+        Integer userGroup = engine.getGroupService(accessToken).getUserGroup("oTDoKt-0csI5Phsl1TqpUiBKm_cw");
+        System.out.println(userGroup);
+    }
+
+    @Test
+    public void update(){
+        Status update = engine.getGroupService(accessToken).update(new Group(100, "123321123321"));
+        System.out.println(update);
     }
 
 }

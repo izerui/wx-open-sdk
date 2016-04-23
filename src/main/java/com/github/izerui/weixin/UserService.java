@@ -22,4 +22,5 @@ import com.github.izerui.weixin.mappings.Users;
 public interface UserService {
 
     Users get(String nextOpenId);
+
 }

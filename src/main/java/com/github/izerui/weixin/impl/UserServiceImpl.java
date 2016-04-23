@@ -16,6 +16,8 @@ package com.github.izerui.weixin.impl;
 
 import com.github.izerui.weixin.UserService;
 import com.github.izerui.weixin.api.UserApi;
+import com.github.izerui.weixin.mappings.Group;
+import com.github.izerui.weixin.mappings.Status;
 import com.github.izerui.weixin.mappings.Users;
 import retrofit2.Retrofit;
 
@@ -37,4 +39,5 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
     public Users get(String nextOpenId) {
         return execute(api().get(nextOpenId,accessToken));
     }
+
 }

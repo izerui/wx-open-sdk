@@ -14,6 +14,7 @@
  */
 package junit;
 
+import com.github.izerui.weixin.mappings.Group;
 import com.github.izerui.weixin.mappings.Users;
 import org.junit.Test;
 
@@ -28,4 +29,5 @@ public class UserJunit extends BaseJunit {
         Users users = engine.getUserService(accessToken).get(null);
         System.out.println(users);
     }
+
 }

@@ -15,6 +15,7 @@
 package com.github.izerui.weixin;
 
 import com.github.izerui.weixin.mappings.Group;
+import com.github.izerui.weixin.mappings.Status;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ import java.util.List;
 public interface GroupService {
     List<Group> groups();
     Group create(String name);
+    Integer getUserGroup(String openId);
+    Status update(Group group);
 }

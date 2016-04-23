@@ -25,6 +25,20 @@ public class Group implements Serializable{
     private String name;
     private Integer count;
 
+    public Group() {
+    }
+
+    public Group(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Group(Integer id, String name, Integer count) {
+        this.id = id;
+        this.name = name;
+        this.count = count;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -24,7 +24,7 @@ import java.lang.reflect.Type;
 /**
  * Created by serv on 16/4/23.
  */
-public class JacksonConverter<REQUEST extends Object,RESPONSE extends Object> {
+public class JacksonConverter<REQUEST,RESPONSE> {
 
     public static final String CHARSET_UTF8 = "UTF-8";
     public static final String CHARSET_GBK = "GBK";
