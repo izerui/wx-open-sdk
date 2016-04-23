@@ -14,6 +14,8 @@
  */
 package com.github.izerui.weixin;
 
+import com.github.izerui.weixin.mappings.Status;
+import com.github.izerui.weixin.mappings.UserGroup;
 import com.github.izerui.weixin.mappings.Users;
 
 /**
@@ -23,4 +25,5 @@ public interface UserService {
 
     Users get(String nextOpenId);
 
+    Status move(UserGroup userGroup);
 }

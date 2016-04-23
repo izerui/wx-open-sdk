@@ -18,6 +18,7 @@ import com.github.izerui.weixin.UserService;
 import com.github.izerui.weixin.api.UserApi;
 import com.github.izerui.weixin.mappings.Group;
 import com.github.izerui.weixin.mappings.Status;
+import com.github.izerui.weixin.mappings.UserGroup;
 import com.github.izerui.weixin.mappings.Users;
 import retrofit2.Retrofit;
 
@@ -40,4 +41,8 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
         return execute(api().get(nextOpenId,accessToken));
     }
 
+    @Override
+    public Status move(UserGroup userGroup) {
+        return execute(api().move(userGroup,accessToken));
+    }
 }
