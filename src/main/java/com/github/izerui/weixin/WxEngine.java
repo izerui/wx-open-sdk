@@ -33,6 +33,7 @@ public class WxEngine {
     private UserService userService;
     private CommonService commonService;
     private QrcodeService qrcodeService;
+    private ShortUrlService shortUrlService;
 
     public WxEngine() {
         retrofit = builder().build();
@@ -52,6 +53,7 @@ public class WxEngine {
         userService = new UserServiceImpl(retrofit);
         commonService = new CommonServiceImpl(retrofit);
         qrcodeService = new QrcodeServiceImpl(retrofit);
+        shortUrlService = new ShortUrlServiceImpl(retrofit);
     }
 
     protected Retrofit.Builder builder(){
@@ -86,5 +88,9 @@ public class WxEngine {
 
     public QrcodeService getQrcodeService(String accessToken){
         return ((ServiceImpl<?>)qrcodeService).setAccessToken(accessToken);
+    }
+
+    public ShortUrlService getShortUrlService(String accessToken){
+        return ((ServiceImpl<?>)shortUrlService).setAccessToken(accessToken);
     }
 }

@@ -55,7 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserApi> implements UserService
     }
 
     @Override
-    public Status updateRemark(UserRemark userRemark) {
+    public Status update(UserRemark userRemark) {
         return execute(api().updateRemark(userRemark,accessToken));
     }
 

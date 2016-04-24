@@ -12,19 +12,18 @@
  *
  *  0. 你只要他妈的想干嘛就干嘛好了。
  */
-package com.github.izerui.weixin;
+package junit;
 
-import com.github.izerui.weixin.mappings.QrCode;
-import com.github.izerui.weixin.mappings.Ticket;
-
-import java.net.URL;
+import org.junit.Test;
 
 /**
  * Created by serv on 16/4/24.
  */
-public interface QrcodeService {
+public class ShortUrlTest extends BaseTest {
 
-    Ticket create(QrCode qrCode);
-
-    URL url(String ticket);
+    @Test
+    public void shortUrl(){
+        String s = engine.getShortUrlService(accessToken).shortUrl("http://www.jsonschema2pojo.org/");
+        System.out.println(s);
+    }
 }

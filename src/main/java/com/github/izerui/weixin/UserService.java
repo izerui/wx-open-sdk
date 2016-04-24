@@ -29,7 +29,7 @@ public interface UserService {
 
     Status move(ArrayUser arrayUser);
 
-    Status updateRemark(UserRemark userRemark);
+    Status update(UserRemark userRemark);
 
     UserInfo userInfo(String openId);
 

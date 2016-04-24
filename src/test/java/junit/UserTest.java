@@ -49,7 +49,7 @@ public class UserTest extends BaseTest {
 
     @Test
     public void updateRemark(){
-        Status hello = engine.getUserService(accessToken).updateRemark(new UserRemark("oTDoKtx09l8il-jM1TtdeGs_fHT4", "哈喽"));
+        Status hello = engine.getUserService(accessToken).update(new UserRemark("oTDoKtx09l8il-jM1TtdeGs_fHT4", "哈喽"));
         System.out.println(hello);
 
     }
