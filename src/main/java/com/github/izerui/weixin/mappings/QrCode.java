@@ -18,6 +18,22 @@ public class QrCode implements Serializable{
     @JsonProperty("action_info")
     private ActionInfo actionInfo;
 
+    public Integer getExpireSeconds() {
+        return expireSeconds;
+    }
+
+    public String getActionName() {
+        return actionName;
+    }
+
+    public Integer getSceneId(){
+        return actionInfo.scene.sceneId;
+    }
+
+    public String getSceneStr(){
+        return actionInfo.scene.sceneStr;
+    }
+
     /**
      * 临时二维码
      * @param expireSeconds
@@ -38,30 +54,6 @@ public class QrCode implements Serializable{
         this.actionInfo = new ActionInfo(sceneStr);
     }
 
-    public Integer getExpireSeconds() {
-        return expireSeconds;
-    }
-
-    public void setExpireSeconds(Integer expireSeconds) {
-        this.expireSeconds = expireSeconds;
-    }
-
-    public String getActionName() {
-        return actionName;
-    }
-
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
-    }
-
-    public ActionInfo getActionInfo() {
-        return actionInfo;
-    }
-
-    public void setActionInfo(ActionInfo actionInfo) {
-        this.actionInfo = actionInfo;
-    }
-
     private class ActionInfo implements Serializable{
 
         @JsonProperty("scene")
@@ -75,14 +67,6 @@ public class QrCode implements Serializable{
         //永久
         public ActionInfo(String sceneStr) {
             this.scene = new Scene(sceneStr);
-        }
-
-        public Scene getScene() {
-            return scene;
-        }
-
-        public void setScene(Scene scene) {
-            this.scene = scene;
         }
 
         private class Scene implements Serializable{
@@ -102,21 +86,6 @@ public class QrCode implements Serializable{
             }
 
 
-            public Integer getSceneId() {
-                return sceneId;
-            }
-
-            public void setSceneId(Integer sceneId) {
-                this.sceneId = sceneId;
-            }
-
-            public String getSceneStr() {
-                return sceneStr;
-            }
-
-            public void setSceneStr(String sceneStr) {
-                this.sceneStr = sceneStr;
-            }
         }
     }
 }

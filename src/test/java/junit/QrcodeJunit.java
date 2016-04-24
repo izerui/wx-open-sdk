@@ -13,11 +13,15 @@ public class QrcodeJunit extends BaseTest{
     public void create(){
         Ticket fff = engine.getQrcodeService(accessToken).create(new QrCode("fff"));
         System.out.println(fff);
+
+        System.out.println(engine.getQrcodeService(accessToken).url(fff.getTicket()));
     }
 
     @Test
     public void create01(){
         Ticket ticket = engine.getQrcodeService(accessToken).create(new QrCode(100, 222));
         System.out.println(ticket);
+
+        System.out.println(engine.getQrcodeService(accessToken).url(ticket.getTicket()));
     }
 }
