@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by serv on 16/4/21.
  */
-public class GroupJunit extends BaseJunit{
+public class GroupTest extends BaseTest {
 
     @Test
     public void test0(){

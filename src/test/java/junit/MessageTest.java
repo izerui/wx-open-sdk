@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by serv on 16/4/21.
  */
-public class MessageJunit extends BaseJunit {
+public class MessageTest extends BaseTest {
 
     @Test
     public void send(){

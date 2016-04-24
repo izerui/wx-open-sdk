@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by serv on 16/4/16.
  */
-public class MenuJunit extends BaseJunit {
+public class MenuTest extends BaseTest {
 
     @Test
     public void create() throws IOException {

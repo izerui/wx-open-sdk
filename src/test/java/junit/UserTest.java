@@ -20,7 +20,7 @@ import org.junit.Test;
 /**
  * Created by serv on 16/4/21.
  */
-public class UserJunit extends BaseJunit {
+public class UserTest extends BaseTest {
 
     @Test
     public void get(){

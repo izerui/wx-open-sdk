@@ -19,7 +19,7 @@ import org.junit.Test;
 /**
  * Created by serv on 16/4/22.
  */
-public class CommonJunit extends BaseJunit {
+public class CommonTest extends BaseTest {
 
 
     @Test

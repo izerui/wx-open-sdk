@@ -21,7 +21,7 @@ import org.junit.Before;
 /**
  * Created by serv on 16/4/16.
  */
-public abstract class BaseJunit implements Constants{
+public abstract class BaseTest implements Constants{
 
     protected String accessToken;
     protected WxEngine engine;

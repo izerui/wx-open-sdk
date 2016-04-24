@@ -32,6 +32,7 @@ public class WxEngine {
     private MessageService messageService;
     private UserService userService;
     private CommonService commonService;
+    private QrcodeService qrcodeService;
 
     public WxEngine() {
         retrofit = builder().build();
@@ -50,6 +51,7 @@ public class WxEngine {
         messageService = new MessageServiceImpl(retrofit);
         userService = new UserServiceImpl(retrofit);
         commonService = new CommonServiceImpl(retrofit);
+        qrcodeService = new QrcodeServiceImpl(retrofit);
     }
 
     protected Retrofit.Builder builder(){
@@ -80,5 +82,9 @@ public class WxEngine {
 
     public CommonService getCommonService(){
         return commonService;
+    }
+
+    public QrcodeService getQrcodeService(String accessToken){
+        return ((ServiceImpl<?>)qrcodeService).setAccessToken(accessToken);
     }
 }
