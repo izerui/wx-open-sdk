@@ -31,7 +31,7 @@ public class JacksonConverter<REQUEST,RESPONSE> {
     public static final String CHARSET_GBK = "GBK";
 
     public byte[] request(ObjectMapper mapper, Type type, REQUEST request) throws IOException{
-        if(type.getClass().isAssignableFrom(String.class)){
+        if(((Class)type).isAssignableFrom(String.class)){
             return ((String)request).getBytes(CHARSET_UTF8);
         }
         return mapper.writeValueAsBytes(request);
@@ -39,7 +39,7 @@ public class JacksonConverter<REQUEST,RESPONSE> {
 
     public RESPONSE response(ObjectMapper mapper, Type type, byte[] response) throws IOException {
         try {
-            if(type.getClass().isAssignableFrom(String.class)){
+            if(((Class)type).isAssignableFrom(String.class)){
                 return (RESPONSE) new String(response,CHARSET_UTF8);
             }
             return (RESPONSE) mapper.readValue(response, Class.forName(type.getTypeName()));

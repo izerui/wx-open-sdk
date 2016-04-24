@@ -25,15 +25,14 @@ public class CommonTest extends BaseTest {
     @Test
     public void test01(){
         String post = engine.getCommonService().post(
-                "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + accessToken,
+                "https://api.weixin.qq.com/semantic/semproxy/search?access_token=" + accessToken,
                 "{\n" +
-                        "  \"touser\":\"OPENID\", \n" +
-                        "  \"msgtype\":\"wxcard\",\n" +
-                        "  \"wxcard\":{              \n" +
-                        "           \"card_id\":\"123dsdajkasd231jhksad\",\n" +
-                        "           \"card_ext\": \"{\\\"code\\\":\\\"\\\",\\\"openid\\\":\\\"\\\",\\\"timestamp\\\":\\\"1402057159\\\",\\\"signature\\\":\\\"017bb17407c8e0058a66d72dcc61632b70f511ad\\\"}\"            \n" +
-                        "            },\n" +
-                        "}"
+                        "\"query\":\"查一下明天从北京到上海的南航机票\",\n" +
+                        "\"city\":\"北京\",\n" +
+                        "\"category\": \"flight,hotel\",\n" +
+                        "\"appid\":\"wxaaaaaaaaaaaaaaaa\",\n" +
+                        "\"uid\":\"123456\"\n" +
+                        "} "
         );
         System.out.println(post);
     }
