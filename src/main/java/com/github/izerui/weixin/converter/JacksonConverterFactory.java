@@ -117,7 +117,7 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
             JacksonConverter converter = createConverter(annotations);
 
             byte[] bytes = value.bytes();
-            converter.preConvertResponse(mapper,type,bytes);
+
             return (T) converter.response(mapper,type,bytes);
         }
 

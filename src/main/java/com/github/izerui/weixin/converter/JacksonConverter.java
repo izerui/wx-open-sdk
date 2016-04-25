@@ -14,10 +14,7 @@
  */
 package com.github.izerui.weixin.converter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.izerui.weixin.WxException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -47,20 +44,6 @@ public class JacksonConverter<REQUEST,RESPONSE> {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public final void preConvertResponse(ObjectMapper mapper,Type type, byte[] response) throws IOException {
-        try {
-            JsonNode jsonNode = mapper.readTree(response);
-            if(jsonNode.has("errcode")){
-                int errcode = jsonNode.path("errcode").asInt();
-                if(errcode!=0){
-                    throw new WxException(errcode,jsonNode.path("errmsg").asText());
-                }
-            }
-        }catch (JsonProcessingException ex){
-            throw new WxException(-103,"response is not json");
-        }
     }
 
 }

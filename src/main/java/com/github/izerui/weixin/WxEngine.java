@@ -17,7 +17,6 @@ package com.github.izerui.weixin;
 import com.github.izerui.weixin.converter.JacksonConverterFactory;
 import com.github.izerui.weixin.impl.*;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 
 /**
@@ -39,16 +38,19 @@ public class WxEngine {
     private MediaService mediaService;
 
     public WxEngine() {
-        retrofit = builder().build();
+        this(new OkHttpClient());
+    }
+
+    public WxEngine(OkHttpClient client) {
+        OkHttpClient newClient = client.newBuilder().addInterceptor(new WxErrInterceptor()).build();
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.weixin.qq.com/cgi-bin/")
+                .client(newClient)
+                .addConverterFactory(JacksonConverterFactory.create()).build();
         init();
     }
 
-    public WxEngine(OkHttpClient client){
-        retrofit = builder().client(client).build();
-        init();
-    }
-
-    private void init(){
+    private void init() {
         tokenService = new TokenServiceImpl(retrofit);
         menuService = new MenuServiceImpl(retrofit);
         groupService = new GroupServiceImpl(retrofit);
@@ -61,52 +63,43 @@ public class WxEngine {
         mediaService = new MediaServiceImpl(retrofit);
     }
 
-    protected Retrofit.Builder builder(){
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(logging).build();
-        return new Retrofit.Builder()
-                .baseUrl("https://api.weixin.qq.com/cgi-bin/")
-                .client(client)
-                .addConverterFactory(JacksonConverterFactory.create());
-    }
-
-    public TokenService getTokenService(){
+    public TokenService getTokenService() {
         return tokenService;
     }
 
-    public MenuService getMenuService(String accessToken){
-        return ((ServiceImpl<?>)menuService).setAccessToken(accessToken);
+    public MenuService getMenuService(String accessToken) {
+        return ((ServiceImpl<?>) menuService).setAccessToken(accessToken);
     }
 
-    public GroupService getGroupService(String accessToken){
-        return ((ServiceImpl<?>)groupService).setAccessToken(accessToken);
+    public GroupService getGroupService(String accessToken) {
+        return ((ServiceImpl<?>) groupService).setAccessToken(accessToken);
     }
 
-    public MessageService getMessageService(String accessToken){
-        return ((ServiceImpl<?>)messageService).setAccessToken(accessToken);
+    public MessageService getMessageService(String accessToken) {
+        return ((ServiceImpl<?>) messageService).setAccessToken(accessToken);
     }
 
-    public UserService getUserService(String accessToken){
-        return ((ServiceImpl<?>)userService).setAccessToken(accessToken);
+    public UserService getUserService(String accessToken) {
+        return ((ServiceImpl<?>) userService).setAccessToken(accessToken);
     }
 
-    public CommonService getCommonService(){
+    public CommonService getCommonService() {
         return commonService;
     }
 
-    public QrcodeService getQrcodeService(String accessToken){
-        return ((ServiceImpl<?>)qrcodeService).setAccessToken(accessToken);
+    public QrcodeService getQrcodeService(String accessToken) {
+        return ((ServiceImpl<?>) qrcodeService).setAccessToken(accessToken);
     }
 
-    public ShortUrlService getShortUrlService(String accessToken){
-        return ((ServiceImpl<?>)shortUrlService).setAccessToken(accessToken);
+    public ShortUrlService getShortUrlService(String accessToken) {
+        return ((ServiceImpl<?>) shortUrlService).setAccessToken(accessToken);
     }
 
-    public SemanticService getSemanticService(String accessToken){
-        return ((ServiceImpl<?>)semanticService).setAccessToken(accessToken);
+    public SemanticService getSemanticService(String accessToken) {
+        return ((ServiceImpl<?>) semanticService).setAccessToken(accessToken);
     }
 
-    public MediaService getMediaService(String accessToken){
-        return ((ServiceImpl<?>)mediaService).setAccessToken(accessToken);
+    public MediaService getMediaService(String accessToken) {
+        return ((ServiceImpl<?>) mediaService).setAccessToken(accessToken);
     }
 }
