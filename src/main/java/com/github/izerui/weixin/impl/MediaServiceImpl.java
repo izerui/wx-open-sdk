@@ -26,6 +26,7 @@ import retrofit2.Retrofit;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * Created by serv on 16/4/25.
@@ -43,10 +44,7 @@ public class MediaServiceImpl extends ServiceImpl<MediaApi> implements MediaServ
 
     @Override
     public MediaStatus upload(Media media) {
-        MultipartBody.Builder builder = new MultipartBody.Builder();
-        builder.addFormDataPart("filelength",String.valueOf(media.getData().length));
-        builder.addFormDataPart("media",media.getFileName(),RequestBody.create(MediaType.parse("application/octet-stream"), media.getData()));
-        return execute(api().upload(builder.build().parts(),media.getType().name(),accessToken));
+        return execute(api().upload(toMedia(media),media.getType().name(),accessToken));
     }
 
     @Override
@@ -58,5 +56,17 @@ public class MediaServiceImpl extends ServiceImpl<MediaApi> implements MediaServ
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String uploadImg(Media media) {
+        return execute(api().uploadImg(toMedia(media),accessToken));
+    }
+
+    private List<MultipartBody.Part> toMedia(Media media){
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.addFormDataPart("filelength",String.valueOf(media.getData().length));
+        builder.addFormDataPart("media",media.getFileName(),RequestBody.create(MediaType.parse("application/octet-stream"), media.getData()));
+        return builder.build().parts();
     }
 }

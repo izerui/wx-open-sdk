@@ -37,6 +37,14 @@ public class MediaTest extends BaseTest {
     }
 
     @Test
+    public void uploadImg() throws IOException {
+        File file = new File("/Users/serv/Documents/11.pic.jpg");
+        Media media = new Media("11.pic.jpg", Media.Type.image,Files.readAllBytes(file.toPath()));
+        String s = engine.getMediaService(accessToken).uploadImg(media);
+        System.out.println(s);
+    }
+
+    @Test
     public void url(){
         URL df = engine.getMediaService(accessToken).url("-dJj_0Wo87vQtEXWHj3LT-ga0m5YkVJzIlwXLn_4tTdpH9SZB_hYdLjO1yLu_oP7");
         System.out.println(df);

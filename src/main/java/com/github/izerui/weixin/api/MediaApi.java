@@ -14,6 +14,9 @@
  */
 package com.github.izerui.weixin.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.izerui.weixin.converter.Converter;
+import com.github.izerui.weixin.converter.JacksonConverter;
 import com.github.izerui.weixin.mappings.MediaStatus;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -22,6 +25,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -32,4 +37,18 @@ public interface MediaApi {
     @Multipart
     @POST("media/upload")
     Call<MediaStatus> upload(@Part List<MultipartBody.Part> media, @Query("type")String type , @Query("access_token")String accessToken);
+
+
+    @Multipart
+    @POST("media/uploadimg")
+    @Converter(UploadImgConverter.class)
+    Call<String> uploadImg(@Part List<MultipartBody.Part> media,@Query("access_token")String accessToken);
+
+
+    class UploadImgConverter extends JacksonConverter<List<MultipartBody.Part>,String> {
+        @Override
+        public String response(ObjectMapper mapper, Type type, byte[] response) throws IOException {
+            return mapper.readTree(response).path("url").asText();
+        }
+    }
 }

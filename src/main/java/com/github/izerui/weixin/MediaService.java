@@ -27,4 +27,6 @@ public interface MediaService {
     MediaStatus upload(Media media);
 
     URL url(String mediaId);
+
+    String uploadImg(Media media);
 }
