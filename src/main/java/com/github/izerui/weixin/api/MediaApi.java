@@ -17,13 +17,11 @@ package com.github.izerui.weixin.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.izerui.weixin.converter.Converter;
 import com.github.izerui.weixin.converter.JacksonConverter;
+import com.github.izerui.weixin.mappings.MaterialStatus;
 import com.github.izerui.weixin.mappings.MediaStatus;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -43,6 +41,9 @@ public interface MediaApi {
     @POST("media/uploadimg")
     @Converter(UploadImgConverter.class)
     Call<String> uploadImg(@Part List<MultipartBody.Part> media,@Query("access_token")String accessToken);
+
+    @POST("material/add_material")
+    Call<MaterialStatus> addMaterial(@Body MultipartBody media, @Query("access_token")String accessToken);
 
 
     class UploadImgConverter extends JacksonConverter<List<MultipartBody.Part>,String> {

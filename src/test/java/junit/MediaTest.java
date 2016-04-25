@@ -14,6 +14,7 @@
  */
 package junit;
 
+import com.github.izerui.weixin.mappings.MaterialStatus;
 import com.github.izerui.weixin.mappings.Media;
 import com.github.izerui.weixin.mappings.MediaStatus;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class MediaTest extends BaseTest {
     @Test
     public void upload() throws IOException {
         File file = new File("/Users/serv/Documents/11.pic.jpg");
-        Media media = new Media("11.pic.jpg", Media.Type.image,Files.readAllBytes(file.toPath()));
+        Media media = Media.image("11.pic.jpg",Files.readAllBytes(file.toPath()));
         MediaStatus status = engine.getMediaService(accessToken).upload(media);
         System.out.println(status);
     }
@@ -39,10 +40,20 @@ public class MediaTest extends BaseTest {
     @Test
     public void uploadImg() throws IOException {
         File file = new File("/Users/serv/Documents/11.pic.jpg");
-        Media media = new Media("11.pic.jpg", Media.Type.image,Files.readAllBytes(file.toPath()));
+        Media media = Media.image("11.pic.jpg",Files.readAllBytes(file.toPath()));
         String s = engine.getMediaService(accessToken).uploadImg(media);
         System.out.println(s);
     }
+
+
+    @Test
+    public void addMaterial() throws IOException {
+        File file = new File("/Users/serv/Documents/11.pic.jpg");
+        Media media = Media.video("11.pic.jpg", "dfd","dfjsdjf",Files.readAllBytes(file.toPath()));
+        MaterialStatus materialStatus = engine.getMediaService(accessToken).addMaterial(media);
+        System.out.println(materialStatus);
+    }
+
 
     @Test
     public void url(){

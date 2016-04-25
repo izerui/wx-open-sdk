@@ -17,6 +17,7 @@ package com.github.izerui.weixin;
 import com.github.izerui.weixin.converter.JacksonConverterFactory;
 import com.github.izerui.weixin.impl.*;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 
 /**
@@ -61,8 +62,11 @@ public class WxEngine {
     }
 
     protected Retrofit.Builder builder(){
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(logging).build();
         return new Retrofit.Builder()
                 .baseUrl("https://api.weixin.qq.com/cgi-bin/")
+                .client(client)
                 .addConverterFactory(JacksonConverterFactory.create());
     }
 

@@ -14,6 +14,7 @@
  */
 package com.github.izerui.weixin;
 
+import com.github.izerui.weixin.mappings.MaterialStatus;
 import com.github.izerui.weixin.mappings.Media;
 import com.github.izerui.weixin.mappings.MediaStatus;
 
@@ -37,4 +38,6 @@ public interface MediaService {
      * @return
      */
     String uploadImg(Media media);
+
+    MaterialStatus addMaterial(Media media);
 }
