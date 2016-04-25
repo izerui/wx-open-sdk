@@ -43,6 +43,13 @@ public class MessageTest extends BaseTest {
         articles.add(new Message.Article("题名2","说明2","http://boot.ren",null));
 
         System.out.println(messageService.send(Message.articleNews(user, articles)));
-        System.out.println(messageService.send(Message.mediaIdNews(user, "voiceMessage")));
+        System.out.println(messageService.send(Message.mediaIdNews(user, "zbgUo6Yw_w0Xc0-IWbsjT_2ywoEcYIRJw3ltDqXMTjQ")));
+    }
+
+    @Test
+    public void send1(){
+        String user = "oTDoKt-0csI5Phsl1TqpUiBKm_cw";
+        MessageService messageService = engine.getMessageService(accessToken);
+        System.out.println(messageService.send(Message.mediaIdNews(user, "zbgUo6Yw_w0Xc0-IWbsjT_2ywoEcYIRJw3ltDqXMTjQ")));
     }
 }

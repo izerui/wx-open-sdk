@@ -17,8 +17,10 @@ package com.github.izerui.weixin;
 import com.github.izerui.weixin.mappings.MaterialStatus;
 import com.github.izerui.weixin.mappings.Media;
 import com.github.izerui.weixin.mappings.MediaStatus;
+import com.github.izerui.weixin.mappings.News;
 
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by serv on 16/4/25.
@@ -40,4 +42,6 @@ public interface MediaService {
     String uploadImg(Media media);
 
     MaterialStatus addMaterial(Media media);
+
+    String addNewses(List<News> news);
 }

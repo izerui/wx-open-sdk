@@ -19,6 +19,7 @@ import com.github.izerui.weixin.api.MediaApi;
 import com.github.izerui.weixin.mappings.MaterialStatus;
 import com.github.izerui.weixin.mappings.Media;
 import com.github.izerui.weixin.mappings.MediaStatus;
+import com.github.izerui.weixin.mappings.News;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -88,6 +89,11 @@ public class MediaServiceImpl extends ServiceImpl<MediaApi> implements MediaServ
         builder.setType(MultipartBody.FORM);
 
         return execute(api().addMaterial(builder.build(), accessToken));
+    }
+
+    @Override
+    public String addNewses(List<News> newses) {
+        return execute(api().addNewses(newses,accessToken));
     }
 
 }
