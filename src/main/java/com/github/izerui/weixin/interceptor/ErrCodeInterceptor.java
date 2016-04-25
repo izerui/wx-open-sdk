@@ -12,10 +12,11 @@
  *
  *  0. 你只要他妈的想干嘛就干嘛好了。
  */
-package com.github.izerui.weixin;
+package com.github.izerui.weixin.interceptor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.izerui.weixin.WxException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,7 +30,7 @@ import java.nio.charset.Charset;
 /**
  * Created by serv on 16/4/25.
  */
-public class WxErrInterceptor implements Interceptor {
+public class ErrCodeInterceptor implements Interceptor {
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
 

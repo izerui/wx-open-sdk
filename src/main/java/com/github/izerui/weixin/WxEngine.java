@@ -16,6 +16,7 @@ package com.github.izerui.weixin;
 
 import com.github.izerui.weixin.converter.JacksonConverterFactory;
 import com.github.izerui.weixin.impl.*;
+import com.github.izerui.weixin.interceptor.ErrCodeInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
@@ -42,7 +43,7 @@ public class WxEngine {
     }
 
     public WxEngine(OkHttpClient client) {
-        OkHttpClient newClient = client.newBuilder().addInterceptor(new WxErrInterceptor()).build();
+        OkHttpClient newClient = client.newBuilder().addInterceptor(new ErrCodeInterceptor()).build();
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.weixin.qq.com/cgi-bin/")
                 .client(newClient)
