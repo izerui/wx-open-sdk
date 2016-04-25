@@ -25,7 +25,7 @@ public class QrcodeJunit extends BaseTest{
 
     @Test
     public void create(){
-        Ticket fff = engine.getQrcodeService(accessToken).create(new QrCode("fff"));
+        Ticket fff = engine.getQrcodeService(accessToken).create(QrCode.forever("fff"));
         System.out.println(fff);
 
         System.out.println(engine.getQrcodeService(accessToken).url(fff.getTicket()));
@@ -33,7 +33,7 @@ public class QrcodeJunit extends BaseTest{
 
     @Test
     public void create01(){
-        Ticket ticket = engine.getQrcodeService(accessToken).create(new QrCode(100, 222));
+        Ticket ticket = engine.getQrcodeService(accessToken).create(QrCode.timeout(100, 222));
         System.out.println(ticket);
 
         System.out.println(engine.getQrcodeService(accessToken).url(ticket.getTicket()));

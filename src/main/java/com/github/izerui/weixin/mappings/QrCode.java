@@ -32,6 +32,34 @@ public class QrCode implements Serializable{
     @JsonProperty("action_info")
     private ActionInfo actionInfo;
 
+    public static QrCode timeout(Integer expireSeconds, Integer sceneId){
+        return new QrCode(expireSeconds,sceneId);
+    }
+
+    public static QrCode forever(String sceneStr){
+        return new QrCode(sceneStr);
+    }
+
+    /**
+     * 临时二维码
+     * @param expireSeconds
+     * @param sceneId
+     */
+    private QrCode(Integer expireSeconds, Integer sceneId) {
+        this.expireSeconds = expireSeconds;
+        this.actionName = "QR_SCENE";
+        this.actionInfo = new ActionInfo(sceneId);
+    }
+
+    /**
+     * 永久二维码
+     * @param sceneStr
+     */
+    private QrCode(String sceneStr) {
+        this.actionName = "QR_LIMIT_STR_SCENE";
+        this.actionInfo = new ActionInfo(sceneStr);
+    }
+
     public Integer getExpireSeconds() {
         return expireSeconds;
     }
@@ -48,25 +76,6 @@ public class QrCode implements Serializable{
         return actionInfo.scene.sceneStr;
     }
 
-    /**
-     * 临时二维码
-     * @param expireSeconds
-     * @param sceneId
-     */
-    public QrCode(Integer expireSeconds, Integer sceneId) {
-        this.expireSeconds = expireSeconds;
-        this.actionName = "QR_SCENE";
-        this.actionInfo = new ActionInfo(sceneId);
-    }
-
-    /**
-     * 永久二维码
-     * @param sceneStr
-     */
-    public QrCode(String sceneStr) {
-        this.actionName = "QR_LIMIT_STR_SCENE";
-        this.actionInfo = new ActionInfo(sceneStr);
-    }
 
     private class ActionInfo implements Serializable{
 
