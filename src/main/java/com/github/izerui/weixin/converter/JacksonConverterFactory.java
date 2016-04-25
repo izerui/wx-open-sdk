@@ -45,6 +45,8 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
 
     private final ObjectMapper mapper;
 
+    private final JacksonConverter<?,?> defaultJacksonConverter = new JacksonConverter<>();
+
     private JacksonConverterFactory(ObjectMapper mapper) {
         if (mapper == null) throw new NullPointerException("mapper == null");
         this.mapper = mapper;
@@ -72,7 +74,7 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
                 }
             }
         }
-        return new JacksonConverter();
+        return defaultJacksonConverter;
     }
 
     private class JacksonRequestBodyConverter<T> implements retrofit2.Converter<T, RequestBody> {
