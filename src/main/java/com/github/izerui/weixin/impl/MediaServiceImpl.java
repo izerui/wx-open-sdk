@@ -23,6 +23,10 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
+
 /**
  * Created by serv on 16/4/25.
  */
@@ -43,5 +47,16 @@ public class MediaServiceImpl extends ServiceImpl<MediaApi> implements MediaServ
         builder.addFormDataPart("filelength",String.valueOf(media.getData().length));
         builder.addFormDataPart("media",media.getFileName(),RequestBody.create(MediaType.parse("application/octet-stream"), media.getData()));
         return execute(api().upload(builder.build().parts(),media.getType().name(),accessToken));
+    }
+
+    @Override
+    public URL url(String mediaId) {
+        try {
+            return retrofit.baseUrl().resolve("media/get").newBuilder().addQueryParameter("access_token",accessToken)
+                    .addQueryParameter("media_id", URLEncoder.encode(mediaId,"UTF-8")).build().url();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 
 /**
@@ -33,5 +34,11 @@ public class MediaTest extends BaseTest {
         Media media = new Media("11.pic.jpg", Media.Type.image,Files.readAllBytes(file.toPath()));
         MediaStatus status = engine.getMediaService(accessToken).upload(media);
         System.out.println(status);
+    }
+
+    @Test
+    public void url(){
+        URL df = engine.getMediaService(accessToken).url("-dJj_0Wo87vQtEXWHj3LT-ga0m5YkVJzIlwXLn_4tTdpH9SZB_hYdLjO1yLu_oP7");
+        System.out.println(df);
     }
 }

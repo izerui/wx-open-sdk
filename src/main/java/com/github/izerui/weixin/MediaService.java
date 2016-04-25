@@ -17,10 +17,14 @@ package com.github.izerui.weixin;
 import com.github.izerui.weixin.mappings.Media;
 import com.github.izerui.weixin.mappings.MediaStatus;
 
+import java.net.URL;
+
 /**
  * Created by serv on 16/4/25.
  */
 public interface MediaService {
 
     MediaStatus upload(Media media);
+
+    URL url(String mediaId);
 }
