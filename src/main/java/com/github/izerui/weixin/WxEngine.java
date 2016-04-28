@@ -37,6 +37,7 @@ public class WxEngine {
     private ShortUrlService shortUrlService;
     private SemanticService semanticService;
     private MediaService mediaService;
+    private IpService ipService;
 
     public WxEngine() {
         this(new OkHttpClient());
@@ -62,6 +63,7 @@ public class WxEngine {
         shortUrlService = new ShortUrlServiceImpl(retrofit);
         semanticService = new SemanticServiceImpl(retrofit);
         mediaService = new MediaServiceImpl(retrofit);
+        ipService = new IpServiceImpl(retrofit);
     }
 
     public TokenService getTokenService() {
@@ -102,5 +104,9 @@ public class WxEngine {
 
     public MediaService getMediaService(String accessToken) {
         return ((ServiceImpl<?>) mediaService).setAccessToken(accessToken);
+    }
+
+    public IpService getIpService(String accessToken){
+        return ((ServiceImpl<?>)ipService).setAccessToken(accessToken);
     }
 }
