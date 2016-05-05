@@ -45,7 +45,7 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
 
     private final ObjectMapper mapper;
 
-    private final JacksonConverter<?,?> defaultJacksonConverter = new JacksonConverter<>();
+    private final JacksonConverter<?,?> defaultJacksonConverter = new JacksonConverter();
 
     private JacksonConverterFactory(ObjectMapper mapper) {
         if (mapper == null) throw new NullPointerException("mapper == null");
@@ -55,13 +55,13 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
     @Override
     public retrofit2.Converter responseBodyConverter(Type type, Annotation[] annotations,
                                                      Retrofit retrofit) {
-        return new JacksonResponseBodyConverter<>(type, annotations,mapper);
+        return new JacksonResponseBodyConverter(type, annotations,mapper);
     }
 
     @Override
     public retrofit2.Converter requestBodyConverter(Type type,
                                                     Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-        return new JacksonRequestBodyConverter<>(type, methodAnnotations,mapper);
+        return new JacksonRequestBodyConverter(type, methodAnnotations,mapper);
     }
 
     private JacksonConverter createConverter(Annotation[] annotations){
@@ -92,11 +92,8 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
 
         @Override
         public final RequestBody convert(T value) throws IOException {
-
             JacksonConverter converter = createConverter(methodAnnotations);
-
             byte[] bytes = converter.request(mapper,type,value);
-
             return RequestBody.create(MEDIA_TYPE, bytes);
         }
 
@@ -115,11 +112,8 @@ public final class JacksonConverterFactory extends retrofit2.Converter.Factory {
 
         @Override
         public final T convert(ResponseBody value) throws IOException {
-
             JacksonConverter converter = createConverter(annotations);
-
             byte[] bytes = value.bytes();
-
             return (T) converter.response(mapper,type,bytes);
         }
 
