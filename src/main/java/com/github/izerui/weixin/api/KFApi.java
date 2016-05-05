@@ -11,6 +11,6 @@ import retrofit2.http.Query;
  */
 public interface KFApi {
 
-    @POST("/customservice/kfaccount/add")
+    @POST("customservice/kfaccount/add")
     Call<Boolean> add(@Body KFSession kfSession, @Query("access_token")String accessToken);
 }
