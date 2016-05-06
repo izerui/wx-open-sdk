@@ -15,6 +15,9 @@ public abstract class Message implements Serializable {
 
     protected String kfAccount;
 
+    private Message() {
+    }
+
     protected Message(String toUser) {
         this.toUser = toUser;
     }
