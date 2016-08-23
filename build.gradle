@@ -1,63 +1,49 @@
-group 'com.github.izerui'
-version '1.0-SNAPSHOT'
+subprojects{
+    group 'com.github.izerui'
+    version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: "com.github.hierynomus.license"
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'com.github.hierynomus.license'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
+    buildscript {
+        repositories {
+            maven {
+                url "https://plugins.gradle.org/m2/"
+            }
+        }
+        dependencies {
+            classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
         }
     }
-    dependencies {
-        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
+
+    license {
+        header rootProject.file('license.txt')
+        include "**/*.java"
     }
-}
 
-license {
-    header rootProject.file('license.txt')
-    include "**/*.java"
-}
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
 
+    repositories{
+        mavenCentral()
+    }
 
-repositories{
-    mavenCentral()
-}
+    task sourcesJar(type: Jar, dependsOn:classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
 
-dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.13'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
-    compile 'javax.validation:validation-api:1.1.0.Final'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    testCompile 'junit:junit:4.12'
-    testCompile 'ch.qos.logback:logback-classic:1.1.3'
+    test.enabled = false
 
 }
-
-task sourcesJar(type: Jar, dependsOn:classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
-
-test.enabled = false
