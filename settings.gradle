@@ -18,6 +18,4 @@ include 'services:webservice'
 
 rootProject.name = 'wx-open-sdk'
 include 'core'
-include 'spring'
-include 'spring-boot'
 
